@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="836" version="1.1" width="1356" xmlns="http://www.w3.org/2000/svg">
+<polygon fill="#ffffff" points="14,14 1292,14 1292,37 1341,37 1341,821 14,821 14,14" stroke="#ffffff" stroke-width="1"/>
+<rect fill="none" height="23" stroke="#000000" stroke-width="1" width="1278" x="14" y="14"/>
+<text font-family="Dialog" font-size="12" x="19" y="27">
+br.ufac.aladia.entidades</text>
+<rect fill="none" height="784" stroke="#000000" stroke-width="1" width="1327" x="14" y="37"/>
+<rect fill="#ffffff" height="165" stroke="#ffffff" stroke-width="1" width="256" x="22" y="54"/>
+<rect fill="none" height="165" stroke="#000000" stroke-width="1" width="256" x="22" y="54"/>
+<text font-family="Dialog" font-size="12" x="119" y="67">
++ Usuario</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="256" x="22" y="77"/>
+<text font-family="Dialog" font-size="12" x="26" y="91">
+-nome : String</text>
+<text font-family="Dialog" font-size="12" x="26" y="107">
+-login : String</text>
+<text font-family="Dialog" font-size="12" x="26" y="123">
+-senha : String</text>
+<text font-family="Dialog" font-size="12" x="26" y="139">
+-email : String</text>
+<text font-family="Dialog" font-size="12" x="26" y="155">
+-telefone : String</text>
+<text font-family="Dialog" font-size="12" x="26" y="171">
+-tipo : int</text>
+<text font-family="Dialog" font-size="12" x="26" y="187">
+-situacao : boolean</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="256" x="22" y="197"/>
+<rect fill="#ffffff" height="277" stroke="#ffffff" stroke-width="1" width="198" x="478" y="46"/>
+<rect fill="none" height="277" stroke="#000000" stroke-width="1" width="198" x="478" y="46"/>
+<text font-family="Dialog" font-size="12" x="544" y="59">
++ Amostra</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="198" x="478" y="69"/>
+<text font-family="Dialog" font-size="12" x="482" y="83">
+-numeroAmostra : int</text>
+<text font-family="Dialog" font-size="12" x="482" y="99">
+-numeroFicha : int</text>
+<text font-family="Dialog" font-size="12" x="482" y="115">
+-dataRegistro : Date</text>
+<text font-family="Dialog" font-size="12" x="482" y="131">
+-raca : String</text>
+<text font-family="Dialog" font-size="12" x="482" y="147">
+-animal : String</text>
+<text font-family="Dialog" font-size="12" x="482" y="163">
+-especie : String</text>
+<text font-family="Dialog" font-size="12" x="482" y="179">
+-sexo : String</text>
+<text font-family="Dialog" font-size="12" x="482" y="195">
+-tutor : String</text>
+<text font-family="Dialog" font-size="12" x="482" y="211">
+-idade : String</text>
+<text font-family="Dialog" font-size="12" x="482" y="227">
+-requisitante : String</text>
+<text font-family="Dialog" font-size="12" x="482" y="243">
+-tipoDeAmostras : String</text>
+<text font-family="Dialog" font-size="12" x="482" y="259">
+-responsavelObtencao : String</text>
+<text font-family="Dialog" font-size="12" x="482" y="275">
+-disponibilidade : boolean</text>
+<text font-family="Dialog" font-size="12" x="482" y="291">
+-situacao : boolean</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="198" x="478" y="301"/>
+<rect fill="#ffffff" height="101" stroke="#ffffff" stroke-width="1" width="142" x="222" y="238"/>
+<rect fill="none" height="101" stroke="#000000" stroke-width="1" width="142" x="222" y="238"/>
+<text font-family="Dialog" font-size="12" x="227" y="251">
++ IsolamentoFungico</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="142" x="222" y="261"/>
+<text font-family="Dialog" font-size="12" x="226" y="275">
+-textura : String</text>
+<text font-family="Dialog" font-size="12" x="226" y="291">
+-borda : String</text>
+<text font-family="Dialog" font-size="12" x="226" y="307">
+-observacoes : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="142" x="222" y="317"/>
+<rect fill="#ffffff" height="229" stroke="#ffffff" stroke-width="1" width="176" x="126" y="454"/>
+<rect fill="none" height="229" stroke="#000000" stroke-width="1" width="176" x="126" y="454"/>
+<text font-family="Dialog" font-size="12" x="169" y="467">
++ Filamentoso</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="176" x="126" y="477"/>
+<text font-family="Dialog" font-size="12" x="130" y="491">
+-corVerso : String</text>
+<text font-family="Dialog" font-size="12" x="130" y="507">
+-corReverso : String</text>
+<text font-family="Dialog" font-size="12" x="130" y="523">
+-hifaSeptada : boolean</text>
+<text font-family="Dialog" font-size="12" x="130" y="539">
+-hifa : boolean</text>
+<text font-family="Dialog" font-size="12" x="130" y="555">
+-porangio : boolean</text>
+<text font-family="Dialog" font-size="12" x="130" y="571">
+-zigosporangio : boolean</text>
+<text font-family="Dialog" font-size="12" x="130" y="587">
+-clamidoconidio : boolean</text>
+<text font-family="Dialog" font-size="12" x="130" y="603">
+-atroconidio : boolean</text>
+<text font-family="Dialog" font-size="12" x="130" y="619">
+-basidiosporo : boolean</text>
+<text font-family="Dialog" font-size="12" x="130" y="635">
+-macroconidio : String</text>
+<text font-family="Dialog" font-size="12" x="130" y="651">
+-microconidio : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="176" x="126" y="661"/>
+<rect fill="#ffffff" height="357" stroke="#ffffff" stroke-width="1" width="178" x="334" y="454"/>
+<rect fill="none" height="357" stroke="#000000" stroke-width="1" width="178" x="334" y="454"/>
+<text font-family="Dialog" font-size="12" x="372" y="467">
++ Leveduriforme</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="178" x="334" y="477"/>
+<text font-family="Dialog" font-size="12" x="338" y="491">
+-cor : String</text>
+<text font-family="Dialog" font-size="12" x="338" y="507">
+-diametro : String</text>
+<text font-family="Dialog" font-size="12" x="338" y="523">
+-forma : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="539">
+-arredondada : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="555">
+-clamidosporo : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="571">
+-artrosporo : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="587">
+-ascosporo : String</text>
+<text font-family="Dialog" font-size="12" x="338" y="603">
+-blastoconidioU : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="619">
+-blastoconidioM : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="635">
+-hifaVerdadeira : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="651">
+-pseudoHifa : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="667">
+-capsula : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="683">
+-tuboGerminativo : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="699">
+-provaUrease : String</text>
+<text font-family="Dialog" font-size="12" x="338" y="715">
+-testeNanquim : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="731">
+-provaNiger : boolean</text>
+<text font-family="Dialog" font-size="12" x="338" y="747">
+-microcultivo : String</text>
+<text font-family="Dialog" font-size="12" x="338" y="763">
+-fermentacao : String</text>
+<text font-family="Dialog" font-size="12" x="338" y="779">
+-assimilacao : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="178" x="334" y="789"/>
+<polyline fill="none" points="238,454 238,338" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="238,338 245,350 231,350" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="238,338 245,350 231,350" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="355,454 355,338" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="355,338 362,350 348,350" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="355,338 362,350 348,350" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="277,126 478,126" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="466" x2="478" y1="133" y2="126"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="466" x2="478" y1="119" y2="126"/>
+<text font-family="Dialog" font-size="12" x="333" y="106">
+ Gerencia</text>
+<text font-family="Dialog" font-size="12" x="288" y="121">
+1</text>
+<text font-family="Dialog" font-size="12" x="452" y="121">
+1..*</text>
+<polyline fill="none" points="478,278 363,278" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="375" x2="363" y1="271" y2="278"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="375" x2="363" y1="285" y2="278"/>
+<text font-family="Dialog" font-size="12" x="377" y="258">
+ Permanece</text>
+<text font-family="Dialog" font-size="12" x="459" y="273">
+1</text>
+<text font-family="Dialog" font-size="12" x="374" y="273">
+1</text>
+<rect fill="#ffffff" height="69" stroke="#ffffff" stroke-width="1" width="136" x="838" y="70"/>
+<rect fill="none" height="69" stroke="#000000" stroke-width="1" width="136" x="838" y="70"/>
+<text font-family="Dialog" font-size="12" x="878" y="83">
++ Exame</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="136" x="838" y="93"/>
+<text font-family="Dialog" font-size="12" x="842" y="107">
+-nome : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="136" x="838" y="117"/>
+<polyline fill="none" points="675,126 838,126" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="826" x2="838" y1="133" y2="126"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="826" x2="838" y1="119" y2="126"/>
+<text font-family="Dialog" font-size="12" x="712" y="106">
+ Necessita</text>
+<text font-family="Dialog" font-size="12" x="686" y="121">
+1</text>
+<text font-family="Dialog" font-size="12" x="812" y="121">
+1..*</text>
+<rect fill="#ffffff" height="229" stroke="#ffffff" stroke-width="1" width="164" x="1078" y="310"/>
+<rect fill="none" height="229" stroke="#000000" stroke-width="1" width="164" x="1078" y="310"/>
+<text font-family="Dialog" font-size="12" x="1105" y="323">
++ CitologiaOuvido</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="164" x="1078" y="333"/>
+<text font-family="Dialog" font-size="12" x="1082" y="347">
+-ced : boolean</text>
+<text font-family="Dialog" font-size="12" x="1082" y="363">
+-cen : boolean</text>
+<text font-family="Dialog" font-size="12" x="1082" y="379">
+-neutrofilos : boolean</text>
+<text font-family="Dialog" font-size="12" x="1082" y="395">
+-linfocitos : boolean</text>
+<text font-family="Dialog" font-size="12" x="1082" y="411">
+-macrofagos : boolean</text>
+<text font-family="Dialog" font-size="12" x="1082" y="427">
+-eosinofilos : boolean</text>
+<text font-family="Dialog" font-size="12" x="1082" y="443">
+-cNeoplasicas : boolean</text>
+<text font-family="Dialog" font-size="12" x="1082" y="459">
+-leveduras : String</text>
+<text font-family="Dialog" font-size="12" x="1082" y="475">
+-bacterias : String</text>
+<text font-family="Dialog" font-size="12" x="1082" y="491">
+-observacao : String</text>
+<text font-family="Dialog" font-size="12" x="1082" y="507">
+-tipo : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="164" x="1078" y="517"/>
+<rect fill="#ffffff" height="69" stroke="#ffffff" stroke-width="1" width="135" x="1134" y="222"/>
+<rect fill="none" height="69" stroke="#000000" stroke-width="1" width="135" x="1134" y="222"/>
+<text font-family="Dialog" font-size="12" x="1159" y="235">
++ Tricograma</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="135" x="1134" y="245"/>
+<text font-family="Dialog" font-size="12" x="1138" y="259">
+-resultado : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="135" x="1134" y="269"/>
+<rect fill="#ffffff" height="85" stroke="#ffffff" stroke-width="1" width="168" x="1118" y="46"/>
+<rect fill="none" height="85" stroke="#000000" stroke-width="1" width="168" x="1118" y="46"/>
+<text font-family="Dialog" font-size="12" x="1133" y="59">
++ ParasitologiaOuvido</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="168" x="1118" y="69"/>
+<text font-family="Dialog" font-size="12" x="1122" y="83">
+-resultado : boolean</text>
+<text font-family="Dialog" font-size="12" x="1122" y="99">
+-tipo : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="168" x="1118" y="109"/>
+<polyline fill="none" points="1102,310 1102,238 934,238 934,138" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="934,138 941,150 927,150" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="934,138 941,150 927,150" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="1118,117 973,117" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="973,117 985,110 985,124" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="973,117 985,110 985,124" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="1134,222 958,222 958,138" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="958,138 965,150 951,150" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="958,138 965,150 951,150" stroke="#000000" stroke-width="1"/>
+<rect fill="#ffffff" height="101" stroke="#ffffff" stroke-width="1" width="137" x="574" y="486"/>
+<rect fill="none" height="101" stroke="#000000" stroke-width="1" width="137" x="574" y="486"/>
+<text font-family="Dialog" font-size="12" x="609" y="499">
++ Retirada</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="137" x="574" y="509"/>
+<text font-family="Dialog" font-size="12" x="578" y="523">
+-responsavel : String</text>
+<text font-family="Dialog" font-size="12" x="578" y="539">
+-data : Date</text>
+<text font-family="Dialog" font-size="12" x="578" y="555">
+-usuario : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="137" x="574" y="565"/>
+<rect fill="#ffffff" height="101" stroke="#ffffff" stroke-width="1" width="137" x="750" y="486"/>
+<rect fill="none" height="101" stroke="#000000" stroke-width="1" width="137" x="750" y="486"/>
+<text font-family="Dialog" font-size="12" x="779" y="499">
++ Devolucao</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="137" x="750" y="509"/>
+<text font-family="Dialog" font-size="12" x="754" y="523">
+-responsavel : String</text>
+<text font-family="Dialog" font-size="12" x="754" y="539">
+-data : Date</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="137" x="750" y="557"/>
+<polyline fill="none" points="630,322 630,486" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="623" x2="630" y1="474" y2="486"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="637" x2="630" y1="474" y2="486"/>
+<text font-family="Dialog" font-size="12" x="633" y="409">
+ Sofre</text>
+<text font-family="Dialog" font-size="12" x="643" y="349">
+1</text>
+<text font-family="Dialog" font-size="12" x="643" y="469">
+1</text>
+<polyline fill="none" points="675,310 766,310 766,486" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="759" x2="766" y1="474" y2="486"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="773" x2="766" y1="474" y2="486"/>
+<text font-family="Dialog" font-size="12" x="769" y="357">
+ Sofre</text>
+<text font-family="Dialog" font-size="12" x="686" y="305">
+1</text>
+<text font-family="Dialog" font-size="12" x="779" y="469">
+1</text>
+<rect fill="#ffffff" height="69" stroke="#ffffff" stroke-width="1" width="135" x="1142" y="134"/>
+<rect fill="none" height="69" stroke="#000000" stroke-width="1" width="135" x="1142" y="134"/>
+<text font-family="Dialog" font-size="12" x="1148" y="147">
++ ParasitologiaPele</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="135" x="1142" y="157"/>
+<text font-family="Dialog" font-size="12" x="1146" y="171">
+-resultado : boolean</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="135" x="1142" y="181"/>
+<polyline fill="none" points="1142,138 973,138" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="973,138 985,131 985,145" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="973,138 985,131 985,145" stroke="#000000" stroke-width="1"/>
+<rect fill="#ffffff" height="213" stroke="#ffffff" stroke-width="1" width="158" x="886" y="262"/>
+<rect fill="none" height="213" stroke="#000000" stroke-width="1" width="158" x="886" y="262"/>
+<text font-family="Dialog" font-size="12" x="917" y="275">
++ CitologiaPele</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="158" x="886" y="285"/>
+<text font-family="Dialog" font-size="12" x="890" y="299">
+-ced : boolean</text>
+<text font-family="Dialog" font-size="12" x="890" y="315">
+-cen : boolean</text>
+<text font-family="Dialog" font-size="12" x="890" y="331">
+-neutrofilos : boolean</text>
+<text font-family="Dialog" font-size="12" x="890" y="347">
+-linfocitos : boolean</text>
+<text font-family="Dialog" font-size="12" x="890" y="363">
+-macrofagos : boolean</text>
+<text font-family="Dialog" font-size="12" x="890" y="379">
+-eosinofilos : boolean</text>
+<text font-family="Dialog" font-size="12" x="890" y="395">
+-cNeoplasicas : boolean</text>
+<text font-family="Dialog" font-size="12" x="890" y="411">
+-leveduras : String</text>
+<text font-family="Dialog" font-size="12" x="890" y="427">
+-bacterias : String</text>
+<text font-family="Dialog" font-size="12" x="890" y="443">
+-observacao : String</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="158" x="886" y="453"/>
+<polyline fill="none" points="894,262 894,138" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="894,138 901,150 887,150" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="894,138 901,150 887,150" stroke="#000000" stroke-width="1"/>
+</svg>
