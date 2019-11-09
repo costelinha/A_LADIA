@@ -4,12 +4,21 @@ import java.util.*;
 
 import javax.persistence.*;
 
+@Entity
+@NamedQueries({
+	@NamedQuery(name="Amostra.todas", query="SELECT a FROM Amostra a"),
+	@NamedQuery(name="Amostra.todasPorNome", query="SELECT a FROM Amostra a ORDER BY a.animal"),
+	@NamedQuery(name="Amostra.todasPorNomeContendo", query="SELECT a FROM Amostra a WHERE a.animal LIKE :termo ORDER BY a.animal")
+})
 public class Amostra {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int numeroAmostra;
+	@Column(name="numero_da_amostra", nullable=false)
+	private long numeroAmostra;
+	@Column(name="numero_da_ficha", nullable=true)
 	private int numeroFicha;
+	@Column(name="data_de_registro", nullable=true)
 	private Date dataRegistro;
 	private String raca;
 	private String animal;
@@ -18,15 +27,41 @@ public class Amostra {
 	private String tutor;
 	private String idade;
 	private String requisitante;
-	private String tipoDeAmostras;
-	private String responsavelObtencao;
 	private boolean disponibilidade;
 	private boolean situacao;
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="usuário")
-	private Usuario usuario;
 	
-	public int getNumeroAmostra() {
+	@OneToOne(mappedBy="amostra")
+	private Retirada retirada;
+	
+	@OneToOne(mappedBy="amostra")
+	@JoinColumn(name="amostra_fk")
+	private IsolamentoFungico isoF;
+	
+//	@ManyToOne(cascade=CascadeType.ALL)
+//	@JoinColumn(name="usuario_fk")
+//	private Usuario usuario;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="amostra_fk")
+	private List<ParasitologiaPele> examesPPele = new ArrayList<ParasitologiaPele>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="amostra_fk")
+	private List<ParasitologiaOuvido> examesPOuvido = new ArrayList<ParasitologiaOuvido>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="amostra_fk")
+	private List<CitologiaPele> examesCPele = new ArrayList<CitologiaPele>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="amostra_fk")
+	private List<CitologiaOuvido> examesCOuvido = new ArrayList<CitologiaOuvido>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="amostra_fk")
+	private List<Tricograma> examesTricograma = new ArrayList<Tricograma>();
+	
+	public long getNumeroAmostra() {
 		return numeroAmostra;
 	}
 	public int getNumeroFicha() {
@@ -83,18 +118,6 @@ public class Amostra {
 	public void setRequisitante(String requisitante) {
 		this.requisitante = requisitante;
 	}
-	public String getTipoDeAmostras() {
-		return tipoDeAmostras;
-	}
-	public void setTipoDeAmostras(String tipoDeAmostras) {
-		this.tipoDeAmostras = tipoDeAmostras;
-	}
-	public String getResponsavelObtencao() {
-		return responsavelObtencao;
-	}
-	public void setResponsavelObtencao(String responsavelObtencao) {
-		this.responsavelObtencao = responsavelObtencao;
-	}
 	public boolean isDisponibilidade() {
 		return disponibilidade;
 	}
@@ -106,5 +129,53 @@ public class Amostra {
 	}
 	public void setSituacao(boolean situacao) {
 		this.situacao = situacao;
+	}
+	public Retirada getRetirada() {
+		return retirada;
+	}
+	public void setRetirada(Retirada retirada) {
+		this.retirada = retirada;
+	}
+	
+	public IsolamentoFungico getIsoF() {
+		return isoF;
+	}
+//	public void setIsoF(IsolamentoFungico isoF) {
+//		this.isoF = isoF;
+//	}
+
+	public void adicionarPP(ParasitologiaPele pp) {
+		this.examesPPele.add(pp);
+	}	
+	public void removerPP(ParasitologiaPele pp) {
+		this.examesPPele.remove(pp);
+	}
+	public void adicionarPO(ParasitologiaOuvido po) {
+		this.examesPOuvido.add(po);
+	}
+	public void removerPO(ParasitologiaOuvido po) {
+		this.examesPOuvido.remove(po);
+	}
+	public void adicionarCP(CitologiaPele cp) {
+		this.examesCPele.add(cp);
+	}
+	public void removerCP(CitologiaPele cp) {
+		this.examesCPele.remove(cp);
+	}
+	public void adicionarCO(CitologiaOuvido co) {
+		this.examesCOuvido.add(co);
+	}
+	public void removerCO(CitologiaOuvido co) {
+		this.examesCOuvido.remove(co);
+	}
+	public void adicionarTricograma(Tricograma t) {
+		this.examesTricograma.add(t);
+	}
+	public void removerTricograma(Tricograma t) {
+		this.examesTricograma.remove(t);
+	}
+	
+	public String toString() {
+		return String.format("Amostra [animal=\"%s\"]", this.animal);
 	}
 }

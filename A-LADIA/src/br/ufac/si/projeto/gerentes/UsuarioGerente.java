@@ -1,5 +1,7 @@
 package br.ufac.si.projeto.gerentes;
 
+import java.util.List;
+
 import javax.persistence.*;
 import br.ufac.si.projeto.entidades.*;
 
@@ -32,6 +34,18 @@ public class UsuarioGerente {
 		em.getTransaction().begin();
 		em.remove(usuario);
 		em.getTransaction().commit();
+	}
+	
+	public List<Usuario> recuperarTodos(){
+		return em.createNamedQuery("Usuario.todos").getResultList();
+	}
+	
+	public List<Usuario> recuperarTodosPorNome(){
+		return em.createNamedQuery("Usuario.todosPorNome").getResultList();
+	}
+	
+	public List<Usuario> recuperarTodosPorNomeContendo(String termo){
+		return em.createNamedQuery("Usuario.todosPorNomeContendo").setParameter("termo", "%"+termo+"%").getResultList();
 	}
 	
 	public void encerrar() {

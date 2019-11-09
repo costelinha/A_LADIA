@@ -5,44 +5,40 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Usuario.todos", query="SELECT u FROM Usuario u"),
+	@NamedQuery(name="Usuario.todosPorNome", query="SELECT u FROM Usuario u ORDER BY u.nome"),
+	@NamedQuery(name="Usuario.todosPorNomeContendo", query="SELECT u FROM Usuario u WHERE u.nome LIKE :termo ORDER BY u.nome")
+})
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	
 	@Column(nullable=false, length=100)
 	private String nome;
-	
-	@Column(nullable=false, length=100)
+	@Column(nullable=true, length=100)
 	private String email;
-	
-	@Column(nullable=false, length=20)
+	@Column(nullable=true, length=20)
 	private String telefone;
-	
-	@Column(nullable=false, length=20)
+	@Column(nullable=true, length=20)
 	private String login;
-	
-	@Column(nullable=false, length=20)
+	@Column(nullable=true, length=100)
 	private String senha;
-	
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private int tipo;
-	
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private boolean status;
 	
-	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
-	@JoinColumn(name="usuário")
+	@OneToMany
+	@JoinColumn(name="usuario_fk")
 	private List<Amostra> amostras = new ArrayList<Amostra>();
+	
+	@OneToOne(mappedBy="usuario")
+	private Retirada retirada;
 	
 	public Usuario() {
 		
-	}
-	
-	public Usuario(long id, String nome) {
-		this.id = id;
-		this.nome = nome;
 	}
 
 	public long getId() {
@@ -111,6 +107,10 @@ public class Usuario {
 	
 	public void removerAmostra(Amostra amostra) {
 		this.amostras.remove(amostra);
+	}
+	
+	public String toString() {
+		return String.format("Usuario [nome=\"%s\"]", this.nome);
 	}
 	
 }
