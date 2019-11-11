@@ -19,8 +19,8 @@ public class TelaEstagiario {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaEstagiario window = new TelaEstagiario();
-					window.frame.setVisible(true);
+					TelaEstagiario te = new TelaEstagiario();
+					te.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,6 +43,7 @@ public class TelaEstagiario {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {

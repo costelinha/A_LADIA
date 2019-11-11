@@ -143,6 +143,7 @@ public class TelaCadastro extends JFrame{
 				u.setSenha(new String(pfSenha.getPassword()));
 				ug.adicionar(u);
 				ug.encerrar();
+				u.setTipo(0);
 				JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.");
 				TelaCoordenador ta = new TelaCoordenador();
 				dispose();
