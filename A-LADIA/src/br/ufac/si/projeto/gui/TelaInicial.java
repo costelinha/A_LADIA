@@ -93,24 +93,10 @@ public class TelaInicial extends JFrame {
 		tfLogin = new JTextField();
 		tfLogin.setColumns(10);
 		
-		UsuarioGerente ug = new UsuarioGerente();
-		String senha = new String(pfSenha.getPassword());
-		
 		pfSenha = new JPasswordField();
 		pfSenha.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
-				Usuario usuario = null;
-				usuario=ug.recuperarLogin(tfLogin.getText()).get(0);
 				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
-					if(tfLogin.getText().equals("admin") && new String(pfSenha.getPassword()).equals("123")
-							|| usuario!=null && senha.equals(usuario.getSenha())) {
-						TelaCoordenador ta = new TelaCoordenador();
-						frame.dispose();
-					}else {
-						JOptionPane.showMessageDialog(null, "Dados inválidos", "Falha no login", JOptionPane.ERROR_MESSAGE);
-						tfLogin.setText("");
-						pfSenha.setText("");
-					}
 					login();
 				}
 			}
