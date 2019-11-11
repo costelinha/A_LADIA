@@ -64,33 +64,50 @@ public class TelaCoordenador extends JFrame{
 		JButton btnAmostras = new JButton("Amostras");
 		
 		JLabel lblAladia = new JLabel("A-LADIA");
+		
+		JButton btnSair = new JButton("Sair");
+		
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaInicial ti = new TelaInicial();
+				frame.dispose();
+			}
+		});
+		
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(50)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnUsuarios)
 							.addGap(53)
 							.addComponent(btnAmostras)
 							.addGap(93))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblAladia)
-							.addContainerGap(346, Short.MAX_VALUE))))
+							.addContainerGap(340, Short.MAX_VALUE))))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(191)
+					.addComponent(btnSair)
+					.addContainerGap(191, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(25)
 					.addComponent(lblAladia)
-					.addContainerGap(229, Short.MAX_VALUE))
+					.addContainerGap(232, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(180, Short.MAX_VALUE)
+					.addContainerGap(183, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnAmostras)
 						.addComponent(btnUsuarios))
-					.addGap(64))
+					.addGap(18)
+					.addComponent(btnSair)
+					.addGap(21))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

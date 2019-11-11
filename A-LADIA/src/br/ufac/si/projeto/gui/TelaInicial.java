@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -64,10 +66,11 @@ public class TelaInicial extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 		
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-				UsuarioGerente ug = new UsuarioGerente();
+				login();
 				/*if() {
 					TelaCoordenador tc = new TelaCoordenador();
 					frame.dispose();
@@ -108,6 +111,7 @@ public class TelaInicial extends JFrame {
 						tfLogin.setText("");
 						pfSenha.setText("");
 					}
+					login();
 				}
 			}
 		});
@@ -155,6 +159,50 @@ public class TelaInicial extends JFrame {
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
-	
-	
+	public void login() {
+		Usuario usuario =null;
+		String login = tfLogin.getText(), senha = new String(pfSenha.getPassword());
+		UsuarioGerente ug = new UsuarioGerente();
+
+		//System.out.println(usuario.getNome()+ "trtyu7rt6");
+		try {
+			usuario = ug.recuperarLogin(login).get(0);
+			if((login.equals("admin") && senha.equals("123"))
+					|| (usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==1)) {
+				//TelaEstagiario te = new TelaEstagiario();
+				TelaCoordenador ta = new TelaCoordenador();
+				frame.dispose();
+				
+			}else if(usuario!=null && usuario.getTipo()==0) { 
+					TelaEstagiario te = new TelaEstagiario();
+					frame.dispose();
+					}
+		}catch(Exception e)
+		{
+			
+			JOptionPane.showMessageDialog(null, "Dados inválidos", "Falha no login", JOptionPane.ERROR_MESSAGE);
+			tfLogin.setText("");
+			pfSenha.setText("");
+		}
+
+		
+		
+
+		
+			
+		
+		//}else if((login.equals("admin") && senha.equals("123"))
+			//	|| (usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==0)) {
+			//TelaEstagiario te = new TelaEstagiario();
+		//	frame.dispose();
+		
+
+		
+		//else  {
+		//	JOptionPane.showMessageDialog(null, "Dados inválidos", "Falha no login", JOptionPane.ERROR_MESSAGE);
+			//tfLogin.setText("");
+			//pfSenha.setText("");
+		//}
+	}
+
 }
