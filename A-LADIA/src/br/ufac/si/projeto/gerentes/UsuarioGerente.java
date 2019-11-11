@@ -48,6 +48,10 @@ public class UsuarioGerente {
 		return em.createNamedQuery("Usuario.todosPorNomeContendo").setParameter("termo", "%"+termo+"%").getResultList();
 	}
 	
+	public List<Usuario> recuperarLogin (String termo){
+		return em.createNamedQuery("Usuario.recuperarLogin").setParameter("termo", termo).getResultList();
+	}
+	
 	public void encerrar() {
 		em.close();
 		emf.close();
