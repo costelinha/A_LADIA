@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Amostra.todas", query="SELECT a FROM Amostra a"),
-	@NamedQuery(name="Amostra.todasPorNome", query="SELECT a FROM Amostra a ORDER BY a.animal"),
+	@NamedQuery(name="Amostra.todasRecente", query="SELECT a FROM Amostra a ORDER BY a.id DESC"),
 	@NamedQuery(name="Amostra.todasPorNomeContendo", query="SELECT a FROM Amostra a WHERE a.animal LIKE :termo ORDER BY a.animal")
 })
 public class Amostra {
@@ -37,11 +37,11 @@ public class Amostra {
 	@JoinColumn(name="amostra_fk")
 	private IsolamentoFungico isoF;
 	
-//	@ManyToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="usuario_fk")
-//	private Usuario usuario;
+	@ManyToOne
+	@JoinColumn(name="usuario_fk")
+	private Usuario usuario;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+/*	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="amostra_fk")
 	private List<ParasitologiaPele> examesPPele = new ArrayList<ParasitologiaPele>();
 	
@@ -59,7 +59,7 @@ public class Amostra {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="amostra_fk")
-	private List<Tricograma> examesTricograma = new ArrayList<Tricograma>();
+	private List<Tricograma> examesTricograma = new ArrayList<Tricograma>();*/
 	
 	public long getNumeroAmostra() {
 		return numeroAmostra;
@@ -144,7 +144,7 @@ public class Amostra {
 //		this.isoF = isoF;
 //	}
 
-	public void adicionarPP(ParasitologiaPele pp) {
+/*	public void adicionarPP(ParasitologiaPele pp) {
 		this.examesPPele.add(pp);
 	}	
 	public void removerPP(ParasitologiaPele pp) {
@@ -173,9 +173,15 @@ public class Amostra {
 	}
 	public void removerTricograma(Tricograma t) {
 		this.examesTricograma.remove(t);
-	}
+	}*/
 	
 	public String toString() {
 		return String.format("Amostra [animal=\"%s\"]", this.animal);
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

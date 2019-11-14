@@ -10,8 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -23,7 +21,7 @@ import br.ufac.si.projeto.gerentes.UsuarioGerente;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-public class TelaInicial extends JFrame {
+public class TelaLogin extends JFrame {
 
 	/**
 	 * 
@@ -41,8 +39,8 @@ public class TelaInicial extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaInicial ti = new TelaInicial();
-					ti.frame.setVisible(true);
+					TelaLogin tl = new TelaLogin();
+					tl.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,7 +51,7 @@ public class TelaInicial extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public TelaInicial() {
+	public TelaLogin() {
 		initialize();
 	}
 
@@ -71,14 +69,6 @@ public class TelaInicial extends JFrame {
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 				login();
-				/*if() {
-					TelaCoordenador tc = new TelaCoordenador();
-					frame.dispose();
-				}else {
-					JOptionPane.showMessageDialog(null, "Dados inválidos", "Falha no login", JOptionPane.ERROR_MESSAGE);
-					tfLogin.setText("");
-					pfSenha.setText("");
-				}*/
 			}
 		});
 		
@@ -150,17 +140,15 @@ public class TelaInicial extends JFrame {
 		String login = tfLogin.getText(), senha = new String(pfSenha.getPassword());
 		UsuarioGerente ug = new UsuarioGerente();
 
-		//System.out.println(usuario.getNome()+ "trtyu7rt6");
 		try {
 			usuario = ug.recuperarLogin(login).get(0);
 			if((login.equals("admin") && senha.equals("123"))
 					|| (usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==1)) {
-				//TelaEstagiario te = new TelaEstagiario();
-				TelaCoordenador ta = new TelaCoordenador();
+				TelaCoordenador tc = new TelaCoordenador();
 				frame.dispose();
 				
 			}else if(usuario!=null && usuario.getTipo()==0) { 
-					TelaEstagiario te = new TelaEstagiario();
+					TelaAmostraGerenciamento tag = new TelaAmostraGerenciamento();
 					frame.dispose();
 					}
 		}catch(Exception e)
@@ -171,24 +159,6 @@ public class TelaInicial extends JFrame {
 			pfSenha.setText("");
 		}
 
-		
-		
-
-		
-			
-		
-		//}else if((login.equals("admin") && senha.equals("123"))
-			//	|| (usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==0)) {
-			//TelaEstagiario te = new TelaEstagiario();
-		//	frame.dispose();
-		
-
-		
-		//else  {
-		//	JOptionPane.showMessageDialog(null, "Dados inválidos", "Falha no login", JOptionPane.ERROR_MESSAGE);
-			//tfLogin.setText("");
-			//pfSenha.setText("");
-		//}
 	}
 
 }

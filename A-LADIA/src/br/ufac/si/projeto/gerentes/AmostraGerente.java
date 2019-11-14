@@ -40,8 +40,8 @@ public class AmostraGerente {
 		return em.createNamedQuery("Amostra.todas").getResultList();
 	}
 	
-	public List<Amostra> recuperarTodasPorNome(){
-		return em.createNamedQuery("Amostra.todasPorNome").getResultList();
+	public List<Amostra> recuperarTodasRecente(){
+		return em.createNamedQuery("Amostra.todasRecente").getResultList();
 	}
 	
 	public List<Amostra> recuperarTodasPorNomeContendo(String termo){

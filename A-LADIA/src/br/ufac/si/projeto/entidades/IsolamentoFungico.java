@@ -4,10 +4,16 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@NamedQueries({
+	@NamedQuery(name="IsolamentoFungico.maiorID", query="SELECT isoF FROM IsolamentoFungico isoF ORDER BY isoF.id DESC")
+})
 public abstract class IsolamentoFungico {
 	@Id
+	@Column(nullable=false)
 	private long id;
+	@Column(nullable=false)
 	private String textura;
+	@Column(nullable=false)
 	private String borda;
 	private String observacoes;
 	
@@ -44,6 +50,9 @@ public abstract class IsolamentoFungico {
 	}
 	public void setAmostra(Amostra amostra) {
 		this.amostra = amostra;
+	}
+	public String toString() {
+		return String.format("ISOF [id=\"%d\"]", this.id);
 	}
 	
 }

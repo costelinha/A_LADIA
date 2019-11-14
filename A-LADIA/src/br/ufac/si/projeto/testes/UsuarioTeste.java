@@ -89,11 +89,11 @@ public class UsuarioTeste {
 		a3.setDisponibilidade(true);
 		a3.setSituacao(true);
 		
-		a1.adicionarPP(pp1);
+	/*	a1.adicionarPP(pp1);
 		a1.adicionarPO(po1);
 		a2.adicionarPP(pp2);
 		a3.adicionarCO(co1);
-		a3.adicionarTricograma(t1);
+		a3.adicionarTricograma(t1);*/
 
 		u1.adicionarAmostra(a1);
 		u2.adicionarAmostra(a2);

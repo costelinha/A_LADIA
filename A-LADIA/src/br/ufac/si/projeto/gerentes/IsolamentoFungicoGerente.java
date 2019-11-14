@@ -1,5 +1,7 @@
 package br.ufac.si.projeto.gerentes;
 
+import java.util.List;
+
 import javax.persistence.*;
 import br.ufac.si.projeto.entidades.*;
 
@@ -32,6 +34,10 @@ public class IsolamentoFungicoGerente {
 		em.getTransaction().begin();
 		em.remove(isolamentoFungico);
 		em.getTransaction().commit();
+	}
+	
+	public List<IsolamentoFungico> maiorID() {
+		return em.createNamedQuery("IsolamentoFungico.maiorID").getResultList();
 	}
 	
 	public void encerrar() {

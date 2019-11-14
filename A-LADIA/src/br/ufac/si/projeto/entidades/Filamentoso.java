@@ -5,9 +5,13 @@ import javax.persistence.*;
 @Entity
 public class Filamentoso extends IsolamentoFungico {
 
+	@Column(nullable=false)
 	private String corVerso;
+	@Column(nullable=false)
 	private String corReverso;
+	@Column(nullable=false)
 	private boolean hifa;
+	@Column(nullable=false)
 	private boolean porangio;
 	private boolean clamidoconidio;
 	private boolean artroconidio;

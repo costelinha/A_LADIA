@@ -146,7 +146,7 @@ public class TelaCadastro extends JFrame{
 				u.setTipo(0);
 				JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.");
 				TelaCoordenador ta = new TelaCoordenador();
-				dispose();
+				frame.dispose();
 				}
 			}
 		});

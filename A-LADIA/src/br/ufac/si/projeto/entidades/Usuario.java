@@ -9,7 +9,7 @@ import javax.persistence.*;
 	@NamedQuery(name="Usuario.todos", query="SELECT u FROM Usuario u"),
 	@NamedQuery(name="Usuario.todosPorNome", query="SELECT u FROM Usuario u ORDER BY u.nome"),
 	@NamedQuery(name="Usuario.todosPorNomeContendo", query="SELECT u FROM Usuario u WHERE u.nome LIKE :termo ORDER BY u.nome"),
-	@NamedQuery(name="Usuario.recuperarLogin", query="SELECT u from Usuario u where u.login = :termo")
+	@NamedQuery(name="Usuario.recuperarLogin", query="SELECT u FROM Usuario u WHERE u.login = :termo")
 })
 public class Usuario {
 
@@ -111,7 +111,7 @@ public class Usuario {
 	}
 	
 	public String toString() {
-		return String.format("Usuario [nome=\"%s\"]", this.nome);
+		return String.format(this.nome);
 	}
 	
 }

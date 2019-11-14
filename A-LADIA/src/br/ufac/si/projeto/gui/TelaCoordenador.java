@@ -50,18 +50,27 @@ public class TelaCoordenador extends JFrame{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
 		JButton btnUsuarios = new JButton("Usuários");
-		
 		btnUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastro tc = new TelaCadastro();
+				TelaUsuarioGerenciamento tug = new TelaUsuarioGerenciamento();
 				frame.dispose();
 			}
 		});
 		
 		JButton btnAmostras = new JButton("Amostras");
+		btnAmostras.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaAmostraGerenciamento tag = new TelaAmostraGerenciamento();
+				frame.dispose();
+				
+			}
+		});
 		
 		JLabel lblAladia = new JLabel("A-LADIA");
 		
@@ -69,7 +78,7 @@ public class TelaCoordenador extends JFrame{
 		
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaInicial ti = new TelaInicial();
+				TelaLogin tl = new TelaLogin();
 				frame.dispose();
 			}
 		});
