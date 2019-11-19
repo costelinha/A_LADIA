@@ -41,6 +41,8 @@ public class Amostra {
 	@JoinColumn(name="usuario_fk")
 	private Usuario usuario;
 	
+	private String amostras;
+	
 /*	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="amostra_fk")
 	private List<ParasitologiaPele> examesPPele = new ArrayList<ParasitologiaPele>();
@@ -175,6 +177,12 @@ public class Amostra {
 		this.examesTricograma.remove(t);
 	}*/
 	
+	public String getAmostras() {
+		return amostras;
+	}
+	public void setAmostras(String amostras) {
+		this.amostras = amostras;
+	}
 	public String toString() {
 		return String.format("Amostra [animal=\"%s\"]", this.animal);
 	}

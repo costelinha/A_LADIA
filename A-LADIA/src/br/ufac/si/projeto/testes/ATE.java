@@ -46,8 +46,8 @@ public class ATE {
 		
 //		ag.atualizar(ag.recuperar(2));;
 		UsuarioGerente ug = new UsuarioGerente();
-		ag.recuperar(4).setUsuario(ug.recuperar(4));
-		ag.atualizar(ag.recuperar(4));
+		ag.recuperar(12).setUsuario(ug.recuperar(4));
+		ag.atualizar(ag.recuperar(12));
 //		ag.adicionar(a1);
 		ag.encerrar();
 		ug.encerrar();

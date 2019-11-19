@@ -26,7 +26,7 @@ public class TelaExcluirUsuario extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JFrame frame;
+	private JFrame frame;
 	private Usuario usuario;
 
 	/**

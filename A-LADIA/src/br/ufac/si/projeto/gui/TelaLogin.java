@@ -22,7 +22,8 @@ public class TelaLogin extends JFrame {
 	private JFrame frame;
 	private JTextField tfLogin;
 	private JPasswordField pfSenha;
-	JButton btnEntrar = new JButton("Entrar");
+	private JButton btnEntrar = new JButton("Entrar");
+	private static Usuario usuario;
 
 	/**
 	 * Launch the application.
@@ -137,10 +138,12 @@ public class TelaLogin extends JFrame {
 			if((login.equals("admin") && senha.equals("123"))
 					|| (usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==1)) {
 				TelaCoordenador tc = new TelaCoordenador();
+				TelaLogin.setUsuario(usuario);
 				frame.dispose();
 				
 			}else if(usuario!=null && usuario.getTipo()==0) { 
 					TelaAmostraGerenciamento tag = new TelaAmostraGerenciamento();
+					TelaLogin.setUsuario(usuario);
 					frame.dispose();
 					}
 		}catch(Exception e)
@@ -151,6 +154,14 @@ public class TelaLogin extends JFrame {
 			pfSenha.setText("");
 		}
 
+	}
+
+	public static Usuario getUsuario() {
+		return usuario;
+	}
+
+	public static void setUsuario(Usuario usuario) {
+		TelaLogin.usuario = usuario;
 	}
 
 }

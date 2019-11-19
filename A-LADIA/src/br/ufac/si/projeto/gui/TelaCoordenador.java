@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import br.ufac.si.projeto.entidades.Usuario;
+
 public class TelaCoordenador extends JFrame{
 
 	/**
@@ -23,7 +25,7 @@ public class TelaCoordenador extends JFrame{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

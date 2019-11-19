@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import br.ufac.si.projeto.entidades.Amostra;
+import br.ufac.si.projeto.entidades.Usuario;
 import br.ufac.si.projeto.gerentes.AmostraGerente;
 import java.util.List;
 
@@ -28,14 +29,14 @@ public class TelaAmostraGerenciamento {
 	private JTable table_1;
 	private JTextField tfBuscar;
 	private AmostraGerente ag = new AmostraGerente();
-	Amostra amostra;
-	List<Amostra> lista = ag.recuperarTodasRecente();
+	private Amostra amostra;
+	private List<Amostra> lista = ag.recuperarTodasRecente();
 
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -92,6 +93,12 @@ public class TelaAmostraGerenciamento {
 		frame.getContentPane().add(btnBuscar);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaCadastrarAmostra tca = new TelaCadastrarAmostra();
+				frame.dispose();
+			}
+		});
 		btnCadastrar.setBounds(503, 161, 117, 25);
 		frame.getContentPane().add(btnCadastrar);
 		
