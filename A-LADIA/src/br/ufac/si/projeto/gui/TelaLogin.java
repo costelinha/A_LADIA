@@ -2,24 +2,16 @@ package br.ufac.si.projeto.gui;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 
-import br.ufac.si.projeto.entidades.Usuario;
-import br.ufac.si.projeto.gerentes.UsuarioGerente;
-
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
+import br.ufac.si.projeto.entidades.*;
+import br.ufac.si.projeto.gerentes.*;
 
 public class TelaLogin extends JFrame {
 

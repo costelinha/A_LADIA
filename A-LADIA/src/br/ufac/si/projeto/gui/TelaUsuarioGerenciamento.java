@@ -20,8 +20,13 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaUsuarioGerenciamento {
 
@@ -53,7 +58,7 @@ public class TelaUsuarioGerenciamento {
 	 */
 	public TelaUsuarioGerenciamento() {
 		initialize();
-		mostrarAmostras();
+		mostrarUsuarios();
 	}
 
 	/**
@@ -68,47 +73,115 @@ public class TelaUsuarioGerenciamento {
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"New column", "New column", "ID", "Nome", "a", "b"
-			}
-		));
-		table_1.setBounds(12, 130, 447, 216);
-		frame.getContentPane().add(table_1);
-		
 		tfBuscar = new JTextField();
 		tfBuscar.setBounds(12, 95, 154, 23);
 		frame.getContentPane().add(tfBuscar);
 		tfBuscar.setColumns(10);
+		tfBuscar.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					lista = ug.recuperarTodosPorNomeContendo(tfBuscar.getText());
+					mostrarUsuarios();
+				}
+			}
+		});
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lista = ug.recuperarTodosPorNomeContendo(tfBuscar.getText());
-				mostrarAmostras();
+				mostrarUsuarios();
 			}
 		});
 		btnBuscar.setBounds(178, 93, 117, 25);
 		frame.getContentPane().add(btnBuscar);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				TelaCadastrarUsuario tc = new TelaCadastrarUsuario();
+				frame.dispose();
+			}
+		});
 		btnCadastrar.setBounds(485, 161, 117, 25);
 		frame.getContentPane().add(btnCadastrar);
 		
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.setEnabled(false);
 		btnEditar.setBounds(485, 205, 117, 25);
 		frame.getContentPane().add(btnEditar);
 		
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.setEnabled(false);
 		btnExcluir.setBounds(485, 251, 117, 25);
 		frame.getContentPane().add(btnExcluir);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 151, 461, 216);
+		frame.getContentPane().add(scrollPane);
+		
+		table_1 = new JTable();
+		scrollPane.setViewportView(table_1);
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Nome", "E-Mail", "Telefone", "Login"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table_1.getColumnModel().getColumn(0).setPreferredWidth(30);
+		table_1.getColumnModel().getColumn(2).setPreferredWidth(180);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaCoordenador tc = new TelaCoordenador();
+				frame.dispose();
+			}
+		});
+		btnVoltar.setBounds(485, 290, 117, 25);
+		frame.getContentPane().add(btnVoltar);
+
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				TelaEditarUsuario teu = new TelaEditarUsuario(ug.recuperar((long)table_1.getValueAt(table_1.getSelectedRow(), 0)));
+				frame.dispose();
+			}
+		
+		});
+		
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				TelaExcluirUsuario texu = new TelaExcluirUsuario(ug.recuperar((long)table_1.getValueAt(table_1.getSelectedRow(), 0)));
+				frame.dispose();
+			}
+		});
+		
+		table_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(table_1.getSelectedRow()==-1) {
+					btnEditar.setEnabled(false);
+					btnExcluir.setEnabled(false);
+				}else {
+					btnEditar.setEnabled(true);
+					btnExcluir.setEnabled(true);
+				}				
+				
+			}
+		});
 	}
 	
-	public void mostrarAmostras() {
+	
+	
+	public void mostrarUsuarios() {
 		
 		DefaultTableModel modelo = (DefaultTableModel)table_1.getModel();
 		Object [] row = new Object [6];
@@ -122,9 +195,9 @@ public class TelaUsuarioGerenciamento {
 			row[2] = lista.get(i).getEmail();
 			row[3] = lista.get(i).getTelefone();
 			row[4] = lista.get(i).getLogin();
-			row[5] = lista.get(i).getSenha();
 			modelo.addRow(row);
 		}
+		
 		
 	}
 }

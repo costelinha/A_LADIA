@@ -22,13 +22,13 @@ public class Usuario {
 	private String email;
 	@Column(nullable=true, length=20)
 	private String telefone;
-	@Column(nullable=true, length=20)
+	@Column(nullable=false, length=20)
 	private String login;
-	@Column(nullable=true, length=100)
+	@Column(nullable=false, length=100)
 	private String senha;
-	@Column(nullable=true)
+	@Column(nullable=false)
 	private int tipo;
-	@Column(nullable=true)
+	@Column(nullable=false)
 	private boolean status;
 	
 	@OneToMany

@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 
-public class TelaCadastro extends JFrame{
+public class TelaEditarUsuario extends JFrame{
 
 	/**
 	 * 
@@ -32,27 +32,30 @@ public class TelaCadastro extends JFrame{
 	private JTextField tfEmail;
 	private JTextField tfLogin;
 	private JPasswordField pfSenha;
+	private JPasswordField pfSenhaConfirmar;
+	private Usuario usuario;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastro tc = new TelaCadastro();
+					TelaEditarUsuario tc = new TelaEditarUsuario();
 					tc.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
 	 */
-	public TelaCadastro() {
+	public TelaEditarUsuario(Usuario usuario) {
+		this.usuario = usuario;
 		initialize();
 	}
 
@@ -63,6 +66,8 @@ public class TelaCadastro extends JFrame{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
 		
@@ -74,15 +79,13 @@ public class TelaCadastro extends JFrame{
 		lblTelefone.setBounds(24, 93, 70, 15);
 		frame.getContentPane().add(lblTelefone);
 		
-		
-		
-		
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(24, 120, 70, 15);
 		frame.getContentPane().add(lblEmail);
 		
 		tfNome = new JTextField();
-		tfNome.setBounds(104, 64, 114, 19);
+		tfNome.setText(usuario.getNome());
+		tfNome.setBounds(166, 66, 114, 19);
 		frame.getContentPane().add(tfNome);
 		tfNome.setColumns(10);
 		
@@ -91,62 +94,72 @@ public class TelaCadastro extends JFrame{
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		tfTelefone.setBounds(104, 91, 114, 19);
+		tfTelefone.setText(usuario.getTelefone());
+		tfTelefone.setBounds(166, 93, 114, 19);
 		frame.getContentPane().add(tfTelefone);
 		tfTelefone.setColumns(10);
 		
-		
-		
 		tfEmail = new JTextField();
-		tfEmail.setBounds(104, 118, 114, 19);
+		tfEmail.setText(usuario.getEmail());
+		tfEmail.setBounds(166, 120, 114, 19);
 		frame.getContentPane().add(tfEmail);
 		tfEmail.setColumns(10);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setBounds(24, 194, 70, 15);
+		lblLogin.setBounds(24, 148, 70, 15);
 		frame.getContentPane().add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(24, 221, 70, 15);
+		lblSenha.setBounds(24, 180, 70, 15);
 		frame.getContentPane().add(lblSenha);
 		
+		JLabel lblSenhaConfirmar = new JLabel("Confirmar senha:");
+		lblSenhaConfirmar.setBounds(24, 209, 138, 15);
+		frame.getContentPane().add(lblSenhaConfirmar);
+		
 		tfLogin = new JTextField();
-		tfLogin.setBounds(104, 193, 114, 19);
+		tfLogin.setText(usuario.getLogin());
+		tfLogin.setBounds(166, 149, 114, 19);
 		frame.getContentPane().add(tfLogin);
 		tfLogin.setColumns(10);
 		
 		pfSenha = new JPasswordField();
-		pfSenha.setBounds(104, 219, 114, 19);
+		pfSenha.setBounds(166, 180, 114, 19);
 		frame.getContentPane().add(pfSenha);
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setFont(new Font("Dialog", Font.BOLD, 11));
-		btnCadastrar.setBounds(230, 234, 97, 25);
-		frame.getContentPane().add(btnCadastrar);
+		pfSenhaConfirmar = new JPasswordField();
+		pfSenhaConfirmar.setBounds(166, 207, 114, 19);
+		frame.getContentPane().add(pfSenhaConfirmar);
 		
-		btnCadastrar.addActionListener(new ActionListener() {
-			
-			
+		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setFont(new Font("Dialog", Font.BOLD, 11));
+		btnConfirmar.setBounds(230, 234, 97, 25);
+		frame.getContentPane().add(btnConfirmar);
+		
+		btnConfirmar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evento) {
-				
-				if (tfNome.getText().isEmpty() || tfEmail.getText().isEmpty() || tfTelefone.getText().isEmpty() || tfLogin.getText().isEmpty() || new String(pfSenha.getPassword()).isEmpty()) {
-				 JOptionPane.showMessageDialog(null, "NO!");	
+				String senha = new String(pfSenha.getPassword());
+				String senhaConfirmar = new String(pfSenhaConfirmar.getPassword());
+				if (tfNome.getText().isEmpty() || tfLogin.getText().isEmpty() || new String(pfSenha.getPassword()).isEmpty() || new String(pfSenhaConfirmar.getPassword()).isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha os campos necessários", "Dados inválidos", 2);	
 				}
-				else {
-				UsuarioGerente ug = new UsuarioGerente();
-				Usuario u = new Usuario();
-				u.setNome(tfNome.getText());
-				u.setEmail(tfEmail.getText());
-				u.setTelefone(tfTelefone.getText());
-				u.setLogin(tfLogin.getText());
-				u.setSenha(new String(pfSenha.getPassword()));
-				ug.adicionar(u);
-				ug.encerrar();
-				u.setTipo(0);
-				JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.");
-				TelaCoordenador ta = new TelaCoordenador();
-				frame.dispose();
+				else if(senha.equals(senhaConfirmar)){
+					UsuarioGerente ug = new UsuarioGerente();
+					ug.recuperar(usuario.getId()).setNome(tfNome.getText());
+					ug.recuperar(usuario.getId()).setEmail(tfEmail.getText());
+					ug.recuperar(usuario.getId()).setTelefone(tfTelefone.getText());
+					ug.recuperar(usuario.getId()).setLogin(tfLogin.getText());
+					ug.recuperar(usuario.getId()).setSenha(senha);
+					ug.atualizar(ug.recuperar(usuario.getId()));
+					ug.encerrar();
+					JOptionPane.showMessageDialog(null, "Alterado com sucesso.");
+					TelaUsuarioGerenciamento tug = new TelaUsuarioGerenciamento();
+					frame.dispose();
+				} else {
+					System.out.println(pfSenha);
+					System.out.println(pfSenhaConfirmar);
+					JOptionPane.showMessageDialog(null, "Senha errada", "Conflito de senha", 2);
 				}
 			}
 		});
@@ -155,12 +168,10 @@ public class TelaCadastro extends JFrame{
 		btnCancelar.setFont(new Font("Dialog", Font.BOLD, 11));
 		btnCancelar.setBounds(339, 234, 97, 25);
 		frame.getContentPane().add(btnCancelar);
-		
 		btnCancelar.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent evento) {
-				TelaCoordenador tc = new TelaCoordenador();
+				TelaUsuarioGerenciamento tug = new TelaUsuarioGerenciamento();
 				frame.dispose();
 				
 			}
