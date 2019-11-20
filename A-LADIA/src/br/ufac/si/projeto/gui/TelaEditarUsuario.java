@@ -12,6 +12,7 @@ import br.ufac.si.projeto.entidades.Usuario;
 import br.ufac.si.projeto.gerentes.UsuarioGerente;
 
 import javax.swing.JPasswordField;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 
@@ -19,6 +20,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import javax.swing.JRadioButton;
 
 public class TelaEditarUsuario extends JFrame{
 
@@ -136,33 +138,7 @@ public class TelaEditarUsuario extends JFrame{
 		btnConfirmar.setBounds(230, 234, 97, 25);
 		frame.getContentPane().add(btnConfirmar);
 		
-		btnConfirmar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent evento) {
-				String senha = new String(pfSenha.getPassword());
-				String senhaConfirmar = new String(pfSenhaConfirmar.getPassword());
-				if (tfNome.getText().isEmpty() || tfLogin.getText().isEmpty() || new String(pfSenha.getPassword()).isEmpty() || new String(pfSenhaConfirmar.getPassword()).isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Preencha os campos necessários", "Dados inválidos", 2);	
-				}
-				else if(senha.equals(senhaConfirmar)){
-					UsuarioGerente ug = new UsuarioGerente();
-					ug.recuperar(usuario.getId()).setNome(tfNome.getText());
-					ug.recuperar(usuario.getId()).setEmail(tfEmail.getText());
-					ug.recuperar(usuario.getId()).setTelefone(tfTelefone.getText());
-					ug.recuperar(usuario.getId()).setLogin(tfLogin.getText());
-					ug.recuperar(usuario.getId()).setSenha(senha);
-					ug.atualizar(ug.recuperar(usuario.getId()));
-					ug.encerrar();
-					JOptionPane.showMessageDialog(null, "Alterado com sucesso.");
-					TelaUsuarioGerenciamento tug = new TelaUsuarioGerenciamento();
-					frame.dispose();
-				} else {
-					System.out.println(pfSenha);
-					System.out.println(pfSenhaConfirmar);
-					JOptionPane.showMessageDialog(null, "Senha errada", "Conflito de senha", 2);
-				}
-			}
-		});
+		
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -180,6 +156,56 @@ public class TelaEditarUsuario extends JFrame{
 		JLabel lblAladia = new JLabel("A-LADIA");
 		lblAladia.setBounds(178, 24, 70, 15);
 		frame.getContentPane().add(lblAladia);
+		
+		JLabel lblPrivilgios = new JLabel("Privilégios");
+		lblPrivilgios.setBounds(333, 66, 103, 15);
+		frame.getContentPane().add(lblPrivilgios);
+		
+		JRadioButton rdbtnEstagirio = new JRadioButton("Estagiário");
+		rdbtnEstagirio.setBounds(301, 89, 149, 23);
+		frame.getContentPane().add(rdbtnEstagirio);
+		
+		JRadioButton rdbtnCoordenador = new JRadioButton("Coordenador");
+		rdbtnCoordenador.setBounds(301, 116, 149, 23);
+		frame.getContentPane().add(rdbtnCoordenador);
+		
+		ButtonGroup bgTipo = new ButtonGroup();
+		bgTipo.add(rdbtnCoordenador);
+		bgTipo.add(rdbtnEstagirio);
+		
+		btnConfirmar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent evento) {
+				String senha = new String(pfSenha.getPassword());
+				String senhaConfirmar = new String(pfSenhaConfirmar.getPassword());
+				if (tfNome.getText().isEmpty() || tfLogin.getText().isEmpty() || new String(pfSenha.getPassword()).isEmpty() || new String(pfSenhaConfirmar.getPassword()).isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Preencha os campos necessários", "Dados inválidos", 2);	
+				}
+				else if(senha.equals(senhaConfirmar)){
+					UsuarioGerente ug = new UsuarioGerente();
+					ug.recuperar(usuario.getId()).setNome(tfNome.getText());
+					ug.recuperar(usuario.getId()).setEmail(tfEmail.getText());
+					ug.recuperar(usuario.getId()).setTelefone(tfTelefone.getText());
+					ug.recuperar(usuario.getId()).setLogin(tfLogin.getText());
+					ug.recuperar(usuario.getId()).setSenha(senha);
+					if(rdbtnCoordenador.isSelected()) {
+						ug.recuperar(usuario.getId()).setTipo(1);
+					}
+					if(rdbtnEstagirio.isSelected()) {
+						ug.recuperar(usuario.getId()).setTipo(0);
+					}
+					ug.atualizar(ug.recuperar(usuario.getId()));
+					ug.encerrar();
+					JOptionPane.showMessageDialog(null, "Alterado com sucesso.");
+					TelaUsuarioGerenciamento tug = new TelaUsuarioGerenciamento();
+					frame.dispose();
+				} else {
+					System.out.println(pfSenha);
+					System.out.println(pfSenhaConfirmar);
+					JOptionPane.showMessageDialog(null, "Senha errada", "Conflito de senha", 2);
+				}
+			}
+		});
 		
 		/*if(tfNome.getText().isEmpty() || tfEmail.getText().isEmpty() || tfTelefone.getText().isEmpty() || tfLogin.getText().isEmpty() || pfSenha.getText().isEmpty()) {
 			btnCadastrar.setEnabled(false);

@@ -26,7 +26,7 @@ import br.ufac.si.projeto.gerentes.UsuarioGerente;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
-public class TelaCadastrarAmostra {
+public class TelaEditarAmostra {
 
 	private JFrame frmCadastroDeAmostra;
 	private JTextField tfAnimal;
@@ -38,28 +38,30 @@ public class TelaCadastrarAmostra {
 	private JTextField tfNFicha;
 	private JTextField tfRequisitante;
 	private JTextField tfAmostras;
+	private Amostra amostra;
 	private static boolean exames[] = new boolean [5];
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastrarAmostra window = new TelaCadastrarAmostra();
+					TelaEditarAmostra window = new TelaEditarAmostra();
 					window.frmCadastroDeAmostra.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
 	 */
-	public TelaCadastrarAmostra() {
+	public TelaEditarAmostra(Amostra amostra) {
+		this.amostra = amostra;
 		initialize();
 	}
 
@@ -83,6 +85,7 @@ public class TelaCadastrarAmostra {
 
 		tfAnimal = new JTextField();
 		tfAnimal.setBounds(66, 74, 228, 19);
+		tfAnimal.setText(amostra.getAnimal());
 		frmCadastroDeAmostra.getContentPane().add(tfAnimal);
 		tfAnimal.setColumns(10);
 
@@ -116,36 +119,43 @@ public class TelaCadastrarAmostra {
 
 		tfEspecie = new JTextField();
 		tfEspecie.setBounds(76, 114, 218, 19);
+		tfEspecie.setText(amostra.getEspecie());
 		frmCadastroDeAmostra.getContentPane().add(tfEspecie);
 		tfEspecie.setColumns(10);
 
 		tfRaca = new JTextField();
 		tfRaca.setBounds(100, 145, 238, 19);
+		tfRaca.setText(amostra.getRaca());
 		frmCadastroDeAmostra.getContentPane().add(tfRaca);
 		tfRaca.setColumns(10);
 
 		tfSexo = new JTextField();
 		tfSexo.setBounds(214, 183, 114, 19);
+		tfSexo.setText(amostra.getSexo());
 		frmCadastroDeAmostra.getContentPane().add(tfSexo);
 		tfSexo.setColumns(10);
 
 		tfTutor = new JTextField();
 		tfTutor.setBounds(147, 218, 181, 19);
+		tfTutor.setText(amostra.getTutor());
 		frmCadastroDeAmostra.getContentPane().add(tfTutor);
 		tfTutor.setColumns(10);
 
 		tfIdade = new JTextField();
 		tfIdade.setBounds(100, 258, 228, 19);
+		tfIdade.setText(amostra.getIdade());
 		frmCadastroDeAmostra.getContentPane().add(tfIdade);
 		tfIdade.setColumns(10);
 
 		tfRequisitante = new JTextField();
 		tfRequisitante.setBounds(147, 298, 181, 19);
+		tfRequisitante.setText(amostra.getRequisitante());
 		frmCadastroDeAmostra.getContentPane().add(tfRequisitante);
 		tfRequisitante.setColumns(10);
 
 		tfAmostras = new JTextField();
 		tfAmostras.setBounds(110, 335, 218, 19);
+		tfAmostras.setText(amostra.getAmostras());
 		frmCadastroDeAmostra.getContentPane().add(tfAmostras);
 		tfAmostras.setColumns(10);
 		
@@ -180,20 +190,16 @@ public class TelaCadastrarAmostra {
 					calendar.setTime(data);
 					AmostraGerente ag = new AmostraGerente();
 					Amostra a = new Amostra();
-					a.setDataRegistro(data);
-					a.setRaca(tfRaca.getText());
-					a.setAnimal(tfAnimal.getText());
-					a.setEspecie(tfEspecie.getText());
-					a.setSexo(tfSexo.getText());
-					a.setTutor(tfTutor.getText());
-					a.setIdade(tfIdade.getText());
-					a.setRequisitante(tfRequisitante.getText());
-					a.setDisponibilidade(true);
-					a.setSituacao(true);
-					a.setAmostras(tfAmostras.getText());
-					a.setUsuario(TelaLogin.getUsuario());
-					if(chckbxParasitologiaDePele.isSelected()) {
-						exames[0]=true;
+					ag.recuperar(a.getNumeroAmostra()).setAnimal(tfAnimal.getText());
+					ag.recuperar(a.getNumeroAmostra()).setRaca(tfRaca.getText());
+					ag.recuperar(a.getNumeroAmostra()).setEspecie(tfEspecie.getText());
+					ag.recuperar(a.getNumeroAmostra()).setAmostras(tfAmostras.getText());
+					ag.recuperar(a.getNumeroAmostra()).setRequisitante(tfRequisitante.getText());
+					ag.recuperar(a.getNumeroAmostra()).setTutor(tfTutor.getText());
+					ag.recuperar(a.getNumeroAmostra()).setSexo(tfSexo.getText());
+					ag.recuperar(a.getNumeroAmostra()).setIdade(tfIdade.getText());		
+				/*	if(chckbxParasitologiaDePele.isSelected()) {
+						a.exames[0]=true;
 					}
 					if(chckbxParasitologiaDeOuvido.isSelected()) {
 						exames[1]=true;
@@ -206,12 +212,16 @@ public class TelaCadastrarAmostra {
 					}
 					if(chckbxTricograma.isSelected()) {
 						exames[4]=true;
-					}
+					}*/
+					
+				
+					
+					
 					a.setExames(exames);
-					ag.adicionar(a);
+					ag.atualizar(ag.recuperar(a.getNumeroAmostra()));
 					ag.encerrar();
 					
-					JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.");
+					JOptionPane.showMessageDialog(null, "Atualizado com sucesso.");
 					TelaAmostraGerenciamento tag = new TelaAmostraGerenciamento();
 					frmCadastroDeAmostra.dispose();
 			}
@@ -233,6 +243,8 @@ public class TelaCadastrarAmostra {
 		
 		tfNFicha = new JTextField();
 		tfNFicha.setBounds(520, 61, 114, 19);
+		tfNFicha.setText(amostra.getNumeroFicha()+"");
+		tfNFicha.disable();
 		frmCadastroDeAmostra.getContentPane().add(tfNFicha);
 		tfNFicha.setColumns(10);
 
@@ -250,7 +262,7 @@ public class TelaCadastrarAmostra {
 	}
 
 	public static void setExames(boolean[] exames) {
-		TelaCadastrarAmostra.exames = exames;
+		TelaEditarAmostra.exames = exames;
 	}
 	
 }

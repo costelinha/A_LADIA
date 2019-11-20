@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Exame {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-//	private String nome;
 	
 	@ManyToOne
 	@JoinColumn(name="amostra_fk")
@@ -28,13 +28,5 @@ public abstract class Exame {
 	public void setAmostra(Amostra amostra) {
 		this.amostra = amostra;
 	}
-
-//	public String getNome() {
-//		return nome;
-//	}
-
-//	public void setNome(String nome) {
-//		this.nome = nome;
-//	}
 
 }

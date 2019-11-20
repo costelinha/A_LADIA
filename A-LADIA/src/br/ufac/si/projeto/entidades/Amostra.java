@@ -29,6 +29,7 @@ public class Amostra {
 	private String requisitante;
 	private boolean disponibilidade;
 	private boolean situacao;
+	private boolean exames[];
 	
 	@OneToOne(mappedBy="amostra")
 	private Retirada retirada;
@@ -42,26 +43,6 @@ public class Amostra {
 	private Usuario usuario;
 	
 	private String amostras;
-	
-/*	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="amostra_fk")
-	private List<ParasitologiaPele> examesPPele = new ArrayList<ParasitologiaPele>();
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="amostra_fk")
-	private List<ParasitologiaOuvido> examesPOuvido = new ArrayList<ParasitologiaOuvido>();
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="amostra_fk")
-	private List<CitologiaPele> examesCPele = new ArrayList<CitologiaPele>();
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="amostra_fk")
-	private List<CitologiaOuvido> examesCOuvido = new ArrayList<CitologiaOuvido>();
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="amostra_fk")
-	private List<Tricograma> examesTricograma = new ArrayList<Tricograma>();*/
 	
 	public long getNumeroAmostra() {
 		return numeroAmostra;
@@ -142,40 +123,6 @@ public class Amostra {
 	public IsolamentoFungico getIsoF() {
 		return isoF;
 	}
-//	public void setIsoF(IsolamentoFungico isoF) {
-//		this.isoF = isoF;
-//	}
-
-/*	public void adicionarPP(ParasitologiaPele pp) {
-		this.examesPPele.add(pp);
-	}	
-	public void removerPP(ParasitologiaPele pp) {
-		this.examesPPele.remove(pp);
-	}
-	public void adicionarPO(ParasitologiaOuvido po) {
-		this.examesPOuvido.add(po);
-	}
-	public void removerPO(ParasitologiaOuvido po) {
-		this.examesPOuvido.remove(po);
-	}
-	public void adicionarCP(CitologiaPele cp) {
-		this.examesCPele.add(cp);
-	}
-	public void removerCP(CitologiaPele cp) {
-		this.examesCPele.remove(cp);
-	}
-	public void adicionarCO(CitologiaOuvido co) {
-		this.examesCOuvido.add(co);
-	}
-	public void removerCO(CitologiaOuvido co) {
-		this.examesCOuvido.remove(co);
-	}
-	public void adicionarTricograma(Tricograma t) {
-		this.examesTricograma.add(t);
-	}
-	public void removerTricograma(Tricograma t) {
-		this.examesTricograma.remove(t);
-	}*/
 	
 	public String getAmostras() {
 		return amostras;
@@ -191,5 +138,11 @@ public class Amostra {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	public boolean[] getExames() {
+		return exames;
+	}
+	public void setExames(boolean[] exames) {
+		this.exames = exames;
 	}
 }

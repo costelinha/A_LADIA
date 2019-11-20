@@ -135,20 +135,21 @@ public class TelaLogin extends JFrame {
 
 		try {
 			usuario = ug.recuperarLogin(login).get(0);
-			if((login.equals("admin") && senha.equals("123"))
-					|| (usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==1)) {
+			if((usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==1)) {
 				TelaCoordenador tc = new TelaCoordenador();
 				TelaLogin.setUsuario(usuario);
 				frame.dispose();
 				
-			}else if(usuario!=null && usuario.getTipo()==0) { 
+			}else if(usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==0) { 
 					TelaAmostraGerenciamento tag = new TelaAmostraGerenciamento();
 					TelaLogin.setUsuario(usuario);
 					frame.dispose();
-					}
-		}catch(Exception e)
-		{
-			
+			} else {
+				JOptionPane.showMessageDialog(null, "Dados inválidos", "Falha no login", JOptionPane.ERROR_MESSAGE);
+				tfLogin.setText("");
+				pfSenha.setText("");
+			}
+		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "Dados inválidos", "Falha no login", JOptionPane.ERROR_MESSAGE);
 			tfLogin.setText("");
 			pfSenha.setText("");
