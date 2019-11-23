@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import java.awt.Font;
 
 public class TelaAmostraGerenciamento {
 
@@ -71,6 +72,7 @@ public class TelaAmostraGerenciamento {
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		frame.setTitle("LADIA - Amostras");
 		
 		tfBuscar = new JTextField();
 		tfBuscar.setBounds(12, 95, 154, 23);
@@ -105,12 +107,16 @@ public class TelaAmostraGerenciamento {
 		btnCadastrar.setBounds(356, 94, 117, 25);
 		frame.getContentPane().add(btnCadastrar);
 		
+		JButton btnEditar = new JButton("Editar");
 		JButton btnRetirar = new JButton("Retirar");
+		JButton btnExcluir = new JButton("Excluir");
 		btnRetirar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
 				amostra = ag.recuperar((long)table_1.getValueAt(table_1.getSelectedRow(), 0));
 				amostra.setDisponibilidade(false);
 				btnRetirar.setEnabled(false);
+				btnEditar.setEnabled(false);
+				btnExcluir.setEnabled(false);
 				ag.atualizar(amostra);
 				JOptionPane.showMessageDialog(null, "Retirada efetuada");
 				mostrarAmostras();
@@ -120,18 +126,16 @@ public class TelaAmostraGerenciamento {
 		btnRetirar.setBounds(49, 358, 117, 25);
 		frame.getContentPane().add(btnRetirar);
 		
-		JButton btnEditar = new JButton("Editar");
-		btnEditar.setEnabled(false);
-		btnEditar.setBounds(485, 140, 117, 25);
-		frame.getContentPane().add(btnEditar);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				TelaEditarAmostra tea = new TelaEditarAmostra(ag.recuperar((long)table_1.getValueAt(table_1.getSelectedRow(), 0)));
 				frame.dispose();
 			}
 		});
+		btnEditar.setEnabled(false);
+		btnEditar.setBounds(485, 140, 117, 25);
+		frame.getContentPane().add(btnEditar);
 		
-		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.setEnabled(false);
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -148,6 +152,8 @@ public class TelaAmostraGerenciamento {
 				amostra = ag.recuperar((long)table_1.getValueAt(table_1.getSelectedRow(), 0));
 				amostra.setDisponibilidade(true);
 				btnDevolver.setEnabled(false);
+				btnEditar.setEnabled(false);
+				btnExcluir.setEnabled(false);
 				JOptionPane.showMessageDialog(null, "Devolução efetuada");
 				ag.atualizar(amostra);
 				mostrarAmostras();
@@ -182,8 +188,8 @@ public class TelaAmostraGerenciamento {
 		table_1.getColumnModel().getColumn(3).setPreferredWidth(99);
 		table_1.getColumnModel().getColumn(4).setPreferredWidth(110);
 		
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
+		JButton btnSair = new JButton("Sair");
+		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(TelaLogin.getUsuario().getTipo()==1) {
 					TelaCoordenador tc = new TelaCoordenador();					
@@ -195,24 +201,29 @@ public class TelaAmostraGerenciamento {
 				
 			}
 		});
-		btnVoltar.setBounds(485, 358, 117, 25);
-		frame.getContentPane().add(btnVoltar);
+		btnSair.setBounds(485, 358, 117, 25);
+		frame.getContentPane().add(btnSair);
 		
-		JButton btnExames = new JButton("Exames");
-		btnExames.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				TelaExameGerenciamento teg = new TelaExameGerenciamento(ag.recuperar((long)table_1.getValueAt(table_1.getSelectedRow(), 0)));
-				frame.dispose();
-			}
-		});
-		btnExames.setEnabled(false);
-		btnExames.setBounds(485, 214, 117, 25);
-		frame.getContentPane().add(btnExames);
+//		JButton btnExames = new JButton("Exames");
+//		btnExames.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				TelaExameGerenciamento teg = new TelaExameGerenciamento(ag.recuperar((long)table_1.getValueAt(table_1.getSelectedRow(), 0)));
+//				frame.dispose();
+//			}
+//		});
+//		btnExames.setEnabled(false);
+//		btnExames.setBounds(485, 214, 117, 25);
+//		frame.getContentPane().add(btnExames);
 		
-		JButton btnIsolamento = new JButton("Isolamento");
-		btnIsolamento.setEnabled(false);
-		btnIsolamento.setBounds(485, 251, 117, 25);
-		frame.getContentPane().add(btnIsolamento);
+//		JButton btnIsolamento = new JButton("Isolamento");
+//		btnIsolamento.setEnabled(false);
+//		btnIsolamento.setBounds(485, 251, 117, 25);
+//		frame.getContentPane().add(btnIsolamento);
+		
+		JLabel label = new JLabel(TelaLogin.getUsuario().getLogin());
+		label.setFont(new Font("Purisa", Font.BOLD, 28));
+		label.setBounds(431, 12, 189, 50);
+		frame.getContentPane().add(label);
 		
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(496, 130, 17, 148);
@@ -223,13 +234,13 @@ public class TelaAmostraGerenciamento {
 				if(table_1.getSelectedRow()==-1) {
 					btnEditar.setEnabled(false);
 					btnExcluir.setEnabled(false);
-					btnExames.setEnabled(false);
-					btnIsolamento.setEnabled(false);
+//					btnExames.setEnabled(false);
+//					btnIsolamento.setEnabled(false);
 				}else {
 					btnEditar.setEnabled(true);
 					btnExcluir.setEnabled(true);
-					btnExames.setEnabled(true);
-					btnIsolamento.setEnabled(true);
+//					btnExames.setEnabled(true);
+//					btnIsolamento.setEnabled(true);
 					if(ag.recuperar((long)table_1.getValueAt(table_1.getSelectedRow(), 0)).isDisponibilidade()) {
 						btnRetirar.setEnabled(true);
 						btnDevolver.setEnabled(false);
@@ -245,7 +256,6 @@ public class TelaAmostraGerenciamento {
 	}
 	
 	public void mostrarAmostras() {
-		
 		DefaultTableModel modelo = (DefaultTableModel)table_1.getModel();
 		Object [] row = new Object [5];
 		while(modelo.getRowCount()>0)

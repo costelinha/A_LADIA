@@ -3,15 +3,19 @@ package br.ufac.si.projeto.entidades;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="ParasitologiaOuvido.pegarID", query="SELECT p FROM ParasitologiaOuvido p "
+			+ "WHERE amostra_fk = :valor")
+})
 public class ParasitologiaOuvido extends Exame {
 
-	private boolean resultado;
+	private String resultado;
 
-	public boolean isResultado() {
+	public String getResultado() {
 		return resultado;
 	}
 
-	public void setResultado(boolean resultado) {
+	public void setResultado(String resultado) {
 		this.resultado = resultado;
 	}
 }

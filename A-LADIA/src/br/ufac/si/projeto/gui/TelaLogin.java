@@ -6,12 +6,14 @@ import javax.swing.*;
 
 import java.awt.event.*;
 
-import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextField;
 
 import br.ufac.si.projeto.entidades.*;
 import br.ufac.si.projeto.gerentes.*;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TelaLogin extends JFrame {
 
@@ -24,6 +26,7 @@ public class TelaLogin extends JFrame {
 	private JPasswordField pfSenha;
 	private JButton btnEntrar = new JButton("Entrar");
 	private static Usuario usuario;
+	
 
 	/**
 	 * Launch the application.
@@ -53,11 +56,12 @@ public class TelaLogin extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 530, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		frame.setTitle("LADIA");
 		
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
@@ -67,7 +71,8 @@ public class TelaLogin extends JFrame {
 		
 		
 		
-		JLabel lblAladia = new JLabel("A-LADIA");
+		JLabel lblAladia = new JLabel("LADIA");
+		lblAladia.setFont(new Font("Purisa", Font.BOLD, 28));
 		
 		JLabel lblLogin = new JLabel("Login");
 		
@@ -85,33 +90,41 @@ public class TelaLogin extends JFrame {
 			}
 		});
 		
+		JLabel lbl = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("download.png")).getImage();
+		lbl.setIcon(new ImageIcon(img));
+		
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(182)
-					.addComponent(lblAladia))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(108)
-					.addComponent(lblLogin)
-					.addGap(35)
-					.addComponent(tfLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(108)
-					.addComponent(lblSenha)
-					.addGap(29)
-					.addComponent(pfSenha, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(158)
-					.addComponent(btnEntrar, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+					.addGap(160)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblLogin)
+							.addGap(35)
+							.addComponent(tfLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblSenha)
+							.addGap(29)
+							.addComponent(pfSenha, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(50)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblAladia, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnEntrar, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lbl, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))))
+					.addContainerGap(132, GroupLayout.PREFERRED_SIZE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(58)
+					.addContainerGap()
+					.addComponent(lbl, GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblAladia)
-					.addGap(47)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(2)
@@ -124,7 +137,8 @@ public class TelaLogin extends JFrame {
 							.addComponent(lblSenha))
 						.addComponent(pfSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(26)
-					.addComponent(btnEntrar))
+					.addComponent(btnEntrar)
+					.addGap(76))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
@@ -135,14 +149,14 @@ public class TelaLogin extends JFrame {
 
 		try {
 			usuario = ug.recuperarLogin(login).get(0);
-			if((usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==1)) {
-				TelaCoordenador tc = new TelaCoordenador();
+			if((usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==1) && usuario.isStatus()) {
 				TelaLogin.setUsuario(usuario);
+				TelaCoordenador tc = new TelaCoordenador();
 				frame.dispose();
 				
-			}else if(usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==0) { 
-					TelaAmostraGerenciamento tag = new TelaAmostraGerenciamento();
+			}else if(usuario!=null && senha.equals(usuario.getSenha()) && usuario.getTipo()==0 && usuario.isStatus()) { 
 					TelaLogin.setUsuario(usuario);
+					TelaAmostraGerenciamento tag = new TelaAmostraGerenciamento();
 					frame.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "Dados inválidos", "Falha no login", JOptionPane.ERROR_MESSAGE);
@@ -164,5 +178,4 @@ public class TelaLogin extends JFrame {
 	public static void setUsuario(Usuario usuario) {
 		TelaLogin.usuario = usuario;
 	}
-
 }

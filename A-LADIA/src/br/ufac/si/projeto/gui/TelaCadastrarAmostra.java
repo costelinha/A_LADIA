@@ -25,6 +25,7 @@ import br.ufac.si.projeto.gerentes.UsuarioGerente;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import java.awt.Font;
 
 public class TelaCadastrarAmostra {
 
@@ -70,19 +71,20 @@ public class TelaCadastrarAmostra {
 
 		frmCadastroDeAmostra = new JFrame();
 		frmCadastroDeAmostra.setTitle("Cadastro de Amostra");
-		frmCadastroDeAmostra.setBounds(100, 100, 646, 497);
+		frmCadastroDeAmostra.setBounds(100, 100, 646, 403);
 		frmCadastroDeAmostra.setLocationRelativeTo(null);
 		frmCadastroDeAmostra.setResizable(false);
 		frmCadastroDeAmostra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCadastroDeAmostra.getContentPane().setLayout(null);
 		frmCadastroDeAmostra.setVisible(true);
+		frmCadastroDeAmostra.setTitle("LADIA - Cadastrar Amostra");
 
 		JLabel lblAnimal = new JLabel("Animal:");
 		lblAnimal.setBounds(12, 76, 70, 15);
 		frmCadastroDeAmostra.getContentPane().add(lblAnimal);
 
 		tfAnimal = new JTextField();
-		tfAnimal.setBounds(66, 74, 228, 19);
+		tfAnimal.setBounds(142, 74, 152, 19);
 		frmCadastroDeAmostra.getContentPane().add(tfAnimal);
 		tfAnimal.setColumns(10);
 
@@ -115,62 +117,62 @@ public class TelaCadastrarAmostra {
 		frmCadastroDeAmostra.getContentPane().add(lblAmostras);
 
 		tfEspecie = new JTextField();
-		tfEspecie.setBounds(76, 114, 218, 19);
+		tfEspecie.setBounds(142, 114, 152, 19);
 		frmCadastroDeAmostra.getContentPane().add(tfEspecie);
 		tfEspecie.setColumns(10);
 
 		tfRaca = new JTextField();
-		tfRaca.setBounds(100, 145, 238, 19);
+		tfRaca.setBounds(142, 148, 152, 19);
 		frmCadastroDeAmostra.getContentPane().add(tfRaca);
 		tfRaca.setColumns(10);
 
 		tfSexo = new JTextField();
-		tfSexo.setBounds(214, 183, 114, 19);
+		tfSexo.setBounds(142, 183, 152, 19);
 		frmCadastroDeAmostra.getContentPane().add(tfSexo);
 		tfSexo.setColumns(10);
 
 		tfTutor = new JTextField();
-		tfTutor.setBounds(147, 218, 181, 19);
+		tfTutor.setBounds(142, 218, 152, 19);
 		frmCadastroDeAmostra.getContentPane().add(tfTutor);
 		tfTutor.setColumns(10);
 
 		tfIdade = new JTextField();
-		tfIdade.setBounds(100, 258, 228, 19);
+		tfIdade.setBounds(142, 258, 152, 19);
 		frmCadastroDeAmostra.getContentPane().add(tfIdade);
 		tfIdade.setColumns(10);
 
 		tfRequisitante = new JTextField();
-		tfRequisitante.setBounds(147, 298, 181, 19);
+		tfRequisitante.setBounds(142, 298, 152, 19);
 		frmCadastroDeAmostra.getContentPane().add(tfRequisitante);
 		tfRequisitante.setColumns(10);
 
 		tfAmostras = new JTextField();
-		tfAmostras.setBounds(110, 335, 218, 19);
+		tfAmostras.setBounds(142, 335, 152, 19);
 		frmCadastroDeAmostra.getContentPane().add(tfAmostras);
 		tfAmostras.setColumns(10);
 		
 		JCheckBox chckbxParasitologiaDePele = new JCheckBox("Parasitologia de Pele");
-		chckbxParasitologiaDePele.setBounds(428, 112, 187, 23);
+		chckbxParasitologiaDePele.setBounds(420, 150, 187, 23);
 		frmCadastroDeAmostra.getContentPane().add(chckbxParasitologiaDePele);
 		
 		JCheckBox chckbxParasitologiaDeOuvido = new JCheckBox("Parasitologia de Ouvido");
-		chckbxParasitologiaDeOuvido.setBounds(428, 146, 218, 23);
+		chckbxParasitologiaDeOuvido.setBounds(420, 184, 218, 23);
 		frmCadastroDeAmostra.getContentPane().add(chckbxParasitologiaDeOuvido);
 		
 		JCheckBox chckbxCitologiaDePele = new JCheckBox("Citologia de Pele");
-		chckbxCitologiaDePele.setBounds(428, 181, 187, 23);
+		chckbxCitologiaDePele.setBounds(420, 219, 187, 23);
 		frmCadastroDeAmostra.getContentPane().add(chckbxCitologiaDePele);		
 
 		JCheckBox chckbxCitologiaDeOuvido = new JCheckBox("Citologia de Ouvido");
-		chckbxCitologiaDeOuvido.setBounds(428, 216, 163, 23);
+		chckbxCitologiaDeOuvido.setBounds(420, 254, 163, 23);
 		frmCadastroDeAmostra.getContentPane().add(chckbxCitologiaDeOuvido);
 		
 		JCheckBox chckbxTricograma = new JCheckBox("Tricograma");
-		chckbxTricograma.setBounds(428, 243, 129, 23);
+		chckbxTricograma.setBounds(420, 281, 129, 23);
 		frmCadastroDeAmostra.getContentPane().add(chckbxTricograma);
 
 		JButton btnConfimar = new JButton("Confirmar");
-		btnConfimar.setBounds(53, 432, 117, 25);
+		btnConfimar.setBounds(364, 332, 117, 25);
 		frmCadastroDeAmostra.getContentPane().add(btnConfimar);
 		btnConfimar.addActionListener(new ActionListener() {
 			@Override
@@ -192,6 +194,7 @@ public class TelaCadastrarAmostra {
 					a.setSituacao(true);
 					a.setAmostras(tfAmostras.getText());
 					a.setUsuario(TelaLogin.getUsuario());
+					a.setNumeroFicha(Integer.parseInt(tfNFicha.getText()));
 					if(chckbxParasitologiaDePele.isSelected()) {
 						exames[0]=true;
 					}
@@ -224,24 +227,26 @@ public class TelaCadastrarAmostra {
 				frmCadastroDeAmostra.dispose();
 			}
 		});
-		btnCancelar.setBounds(211, 432, 117, 25);
+		btnCancelar.setBounds(490, 332, 117, 25);
 		frmCadastroDeAmostra.getContentPane().add(btnCancelar);
 		
 		JLabel lblNmeroDaFicha = new JLabel("Número da ficha:");
-		lblNmeroDaFicha.setBounds(382, 63, 152, 15);
+		lblNmeroDaFicha.setBounds(12, 41, 152, 15);
 		frmCadastroDeAmostra.getContentPane().add(lblNmeroDaFicha);
 		
 		tfNFicha = new JTextField();
-		tfNFicha.setBounds(520, 61, 114, 19);
+		tfNFicha.setBounds(142, 39, 152, 19);
 		frmCadastroDeAmostra.getContentPane().add(tfNFicha);
 		tfNFicha.setColumns(10);
-
-		btnCancelar.setBounds(211, 432, 117, 25);
-		frmCadastroDeAmostra.getContentPane().add(btnCancelar);
 		
 		JLabel lblExames = new JLabel("Exames:");
-		lblExames.setBounds(363, 116, 70, 15);
+		lblExames.setBounds(355, 154, 70, 15);
 		frmCadastroDeAmostra.getContentPane().add(lblExames);
+		
+		JLabel label = new JLabel(TelaLogin.getUsuario().getLogin());
+		label.setFont(new Font("Purisa", Font.BOLD, 28));
+		label.setBounds(454, 0, 180, 50);
+		frmCadastroDeAmostra.getContentPane().add(label);
 		
 	}
 

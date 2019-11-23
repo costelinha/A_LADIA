@@ -34,7 +34,7 @@ public class UsuarioTeste {
 		u2.setTipo(1);
 		u2.setTelefone("888888888");
 		
-		pp1 = new ParasitologiaPele();
+/*		pp1 = new ParasitologiaPele();
 		pp1.setId(1);
 		pp1.setResultado(true);
 		
@@ -47,7 +47,7 @@ public class UsuarioTeste {
 		pp2.setResultado(true);
 		
 		co1 = new CitologiaOuvido();
-		co1.setId(4);
+		co1.setId(4);*/
 		
 		t1 = new Tricograma();
 		t1.setId(5);
@@ -101,9 +101,9 @@ public class UsuarioTeste {
 		
 		ug.adicionar(u1);
 		ug.adicionar(u2);
-		eg.adicionar(pp1);
+	/*	eg.adicionar(pp1);
 		eg.adicionar(po1);
-		eg.adicionar(pp2);
+		eg.adicionar(pp2);*/
 		
 		eg.encerrar();
 		ug.encerrar();

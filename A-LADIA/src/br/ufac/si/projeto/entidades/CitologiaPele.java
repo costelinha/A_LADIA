@@ -3,6 +3,10 @@ package br.ufac.si.projeto.entidades;
 import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="CitologiaPele.pegarID", query="SELECT c FROM CitologiaPele c "
+			+ "WHERE amostra_fk = :valor")
+})
 public class CitologiaPele extends Exame {
 
 	private boolean ced;

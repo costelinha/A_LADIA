@@ -27,6 +27,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
 
 public class TelaUsuarioGerenciamento {
 
@@ -72,6 +73,7 @@ public class TelaUsuarioGerenciamento {
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		frame.setTitle("LADIA - Usuários");
 		
 		tfBuscar = new JTextField();
 		tfBuscar.setBounds(12, 95, 154, 23);
@@ -103,7 +105,7 @@ public class TelaUsuarioGerenciamento {
 				frame.dispose();
 			}
 		});
-		btnCadastrar.setBounds(485, 161, 117, 25);
+		btnCadastrar.setBounds(356, 94, 117, 25);
 		frame.getContentPane().add(btnCadastrar);
 		
 		JButton btnEditar = new JButton("Editar");
@@ -148,6 +150,11 @@ public class TelaUsuarioGerenciamento {
 		});
 		btnVoltar.setBounds(485, 290, 117, 25);
 		frame.getContentPane().add(btnVoltar);
+		
+		JLabel label = new JLabel(TelaLogin.getUsuario().getLogin());
+		label.setFont(new Font("Purisa", Font.BOLD, 28));
+		label.setBounds(436, 0, 184, 50);
+		frame.getContentPane().add(label);
 
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
@@ -190,12 +197,14 @@ public class TelaUsuarioGerenciamento {
 		if(tfBuscar.getText().isEmpty())
 			lista = ug.recuperarTodosPorNome();
 		for(int i=0; i<lista.size(); i++) {
-			row[0] = lista.get(i).getId();
-			row[1] = lista.get(i).getNome();
-			row[2] = lista.get(i).getEmail();
-			row[3] = lista.get(i).getTelefone();
-			row[4] = lista.get(i).getLogin();
-			modelo.addRow(row);
+			if(lista.get(i).isStatus()) {
+				row[0] = lista.get(i).getId();
+				row[1] = lista.get(i).getNome();
+				row[2] = lista.get(i).getEmail();
+				row[3] = lista.get(i).getTelefone();
+				row[4] = lista.get(i).getLogin();
+				modelo.addRow(row);				
+			}
 		}
 		
 		

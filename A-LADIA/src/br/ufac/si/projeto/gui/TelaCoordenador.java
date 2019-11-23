@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import br.ufac.si.projeto.entidades.Usuario;
+import java.awt.Font;
 
 public class TelaCoordenador extends JFrame{
 
@@ -55,6 +56,7 @@ public class TelaCoordenador extends JFrame{
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		frame.setTitle("LADIA - Coordenador");
 		
 		JButton btnUsuarios = new JButton("Usuários");
 		btnUsuarios.addActionListener(new ActionListener() {
@@ -74,8 +76,6 @@ public class TelaCoordenador extends JFrame{
 			}
 		});
 		
-		JLabel lblAladia = new JLabel("A-LADIA");
-		
 		JButton btnSair = new JButton("Sair");
 		
 		btnSair.addActionListener(new ActionListener() {
@@ -85,35 +85,37 @@ public class TelaCoordenador extends JFrame{
 			}
 		});
 		
+		JLabel label = new JLabel(TelaLogin.getUsuario().getLogin());
+		label.setFont(new Font("Purisa", Font.BOLD, 28));
+		
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(50)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnAmostras)
-								.addComponent(btnUsuarios)
-								.addComponent(lblAladia)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(185)
-							.addComponent(btnSair)))
-					.addContainerGap(203, Short.MAX_VALUE))
+					.addGap(36)
+					.addComponent(btnUsuarios)
+					.addGap(18)
+					.addComponent(btnAmostras)
+					.addPreferredGap(ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+					.addComponent(btnSair)
+					.addGap(20))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(253, Short.MAX_VALUE)
+					.addComponent(label, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(25)
-					.addComponent(lblAladia)
-					.addGap(72)
-					.addComponent(btnUsuarios)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnAmostras)
-					.addPreferredGap(ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-					.addComponent(btnSair)
-					.addContainerGap())
+					.addContainerGap()
+					.addComponent(label, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnUsuarios)
+						.addComponent(btnAmostras)
+						.addComponent(btnSair))
+					.addGap(53))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

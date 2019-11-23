@@ -1,5 +1,7 @@
 package br.ufac.si.projeto.gerentes;
 
+import java.util.List;
+
 import javax.persistence.*;
 import br.ufac.si.projeto.entidades.*;
 
@@ -32,6 +34,10 @@ public class ParasitologiaPeleGerente {
 		em.getTransaction().begin();
 		em.remove(parasitologiaPele);
 		em.getTransaction().commit();
+	}
+	
+	public List<ParasitologiaPele> pegarID(long valor){
+		return em.createNamedQuery("ParasitologiaPele.pegarID").setParameter("valor", valor).getResultList();
 	}
 	
 	public void encerrar() {

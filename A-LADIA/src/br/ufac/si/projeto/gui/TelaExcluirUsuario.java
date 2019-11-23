@@ -64,6 +64,7 @@ public class TelaExcluirUsuario extends JFrame{
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		frame.setTitle("LADIA - Excluir Usuário");
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(24, 66, 70, 15);
@@ -78,7 +79,7 @@ public class TelaExcluirUsuario extends JFrame{
 		frame.getContentPane().add(lblEmail);
 		
 		JLabel lblExNome = new JLabel(usuario.getNome());
-		lblExNome.setBounds(166, 64, 114, 19);
+		lblExNome.setBounds(166, 64, 161, 19);
 		frame.getContentPane().add(lblExNome);
 		
 		JLabel lblExTelefone = new JLabel(usuario.getTelefone());
@@ -86,7 +87,7 @@ public class TelaExcluirUsuario extends JFrame{
 		frame.getContentPane().add(lblExTelefone);
 		
 		JLabel lblExEmail = new JLabel(usuario.getEmail());
-		lblExEmail.setBounds(166, 120, 114, 19);
+		lblExEmail.setBounds(166, 120, 161, 19);
 		frame.getContentPane().add(lblExEmail);
 		
 		JLabel lblLogin = new JLabel("Login:");
@@ -94,7 +95,7 @@ public class TelaExcluirUsuario extends JFrame{
 		frame.getContentPane().add(lblLogin);
 		
 		JLabel lblExLogin = new JLabel(usuario.getLogin());
-		lblExLogin.setBounds(166, 149, 114, 19);
+		lblExLogin.setBounds(166, 149, 161, 19);
 		frame.getContentPane().add(lblExLogin);
 		
 		JButton btnConfirmar = new JButton("Confirmar");
@@ -111,7 +112,7 @@ public class TelaExcluirUsuario extends JFrame{
 						//ug.remover(ug.recuperar(usuario.getId()));
 						usuario = ug.recuperar(usuario.getId());
 						usuario.setStatus(false);
-						ug.remover(usuario);
+						ug.atualizar(usuario);
 						ug.encerrar();
 						JOptionPane.showMessageDialog(null, "Removido com sucesso.");
 						TelaUsuarioGerenciamento tug = new TelaUsuarioGerenciamento();
@@ -127,6 +128,24 @@ public class TelaExcluirUsuario extends JFrame{
 		btnCancelar.setFont(new Font("Dialog", Font.BOLD, 11));
 		btnCancelar.setBounds(339, 234, 97, 25);
 		frame.getContentPane().add(btnCancelar);
+		
+		JLabel label = new JLabel(TelaLogin.getUsuario().getLogin());
+		label.setFont(new Font("Purisa", Font.BOLD, 28));
+		label.setBounds(261, 12, 175, 50);
+		frame.getContentPane().add(label);
+		
+		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setBounds(24, 175, 70, 15);
+		frame.getContentPane().add(lblTipo);
+		
+		String aux;
+		if(usuario.getTipo()==1)
+			aux="Coordenador";
+		else
+			aux = "Estagiário";
+		JLabel lblNewLabel = new JLabel(aux);
+		lblNewLabel.setBounds(166, 175, 114, 15);
+		frame.getContentPane().add(lblNewLabel);
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evento) {
@@ -135,10 +154,6 @@ public class TelaExcluirUsuario extends JFrame{
 				
 			}
 		});
-		
-		JLabel lblAladia = new JLabel("A-LADIA");
-		lblAladia.setBounds(178, 24, 70, 15);
-		frame.getContentPane().add(lblAladia);
 		
 		
 	}

@@ -73,6 +73,7 @@ public class TelaCadastrarUsuario extends JFrame{
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		frame.setTitle("LADIA - Cadastrar Usuário");
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(24, 66, 70, 15);
@@ -85,6 +86,18 @@ public class TelaCadastrarUsuario extends JFrame{
 		JLabel lblEmail = new JLabel("E-mail:");
 		lblEmail.setBounds(24, 120, 70, 15);
 		frame.getContentPane().add(lblEmail);
+		
+		JRadioButton rdbtnEstagirio = new JRadioButton("Estagiário");
+		rdbtnEstagirio.setBounds(312, 128, 112, 23);
+		frame.getContentPane().add(rdbtnEstagirio);
+		
+		JRadioButton rdbtnCoordenador = new JRadioButton("Coordenador");
+		rdbtnCoordenador.setBounds(312, 155, 124, 23);
+		frame.getContentPane().add(rdbtnCoordenador);
+		
+		ButtonGroup bgTipo = new ButtonGroup();
+		bgTipo.add(rdbtnCoordenador);
+		bgTipo.add(rdbtnEstagirio);
 		
 		tfNome = new JTextField();
 		tfNome.setBounds(166, 66, 114, 19);
@@ -131,36 +144,6 @@ public class TelaCadastrarUsuario extends JFrame{
 		pfSenhaConfirmar = new JPasswordField();
 		pfSenhaConfirmar.setBounds(166, 207, 114, 19);
 		frame.getContentPane().add(pfSenhaConfirmar);
-		pfSenhaConfirmar.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
-					String senha = new String(pfSenha.getPassword());
-					String senhaConfirmar = new String(pfSenhaConfirmar.getPassword());
-					if (tfNome.getText().isEmpty() || tfLogin.getText().isEmpty() || new String(pfSenha.getPassword()).isEmpty() || new String(pfSenhaConfirmar.getPassword()).isEmpty()) {
-						JOptionPane.showMessageDialog(null, "Preencha os campos necessários", "Dados inválidos", 2);	
-					}
-					else if(senha.equals(senhaConfirmar)){
-						UsuarioGerente ug = new UsuarioGerente();
-						Usuario u = new Usuario();
-						u.setNome(tfNome.getText());
-						u.setEmail(tfEmail.getText());
-						u.setTelefone(tfTelefone.getText());
-						u.setLogin(tfLogin.getText());
-						u.setSenha(senha);
-						u.setTipo(0);
-						ug.adicionar(u);
-						ug.encerrar();
-						JOptionPane.showMessageDialog(null, "Cadastrado com sucesso.");
-						TelaUsuarioGerenciamento tug = new TelaUsuarioGerenciamento();
-						frame.dispose();
-					} else {
-						System.out.println(pfSenha);
-						System.out.println(pfSenhaConfirmar);
-						JOptionPane.showMessageDialog(null, "Senha errada", "Conflito de senha", 2);
-					}
-				}
-			}
-		});
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -182,25 +165,16 @@ public class TelaCadastrarUsuario extends JFrame{
 			}
 		});
 		
-		JLabel lblAladia = new JLabel("A-LADIA");
-		lblAladia.setBounds(178, 24, 70, 15);
-		frame.getContentPane().add(lblAladia);
-		
 		JLabel lblPrivilgios = new JLabel("Privilégios");
-		lblPrivilgios.setBounds(338, 66, 112, 15);
+		lblPrivilgios.setBounds(338, 101, 112, 15);
 		frame.getContentPane().add(lblPrivilgios);
 		
-		JRadioButton rdbtnEstagirio = new JRadioButton("Estagiário");
-		rdbtnEstagirio.setBounds(312, 93, 112, 23);
-		frame.getContentPane().add(rdbtnEstagirio);
+		JLabel label = new JLabel(TelaLogin.getUsuario().getLogin());
+		label.setFont(new Font("Purisa", Font.BOLD, 28));
+		label.setBounds(268, 12, 156, 50);
+		frame.getContentPane().add(label);
 		
-		JRadioButton rdbtnCoordenador = new JRadioButton("Coordenador");
-		rdbtnCoordenador.setBounds(312, 120, 124, 23);
-		frame.getContentPane().add(rdbtnCoordenador);
 		
-		ButtonGroup bgTipo = new ButtonGroup();
-		bgTipo.add(rdbtnCoordenador);
-		bgTipo.add(rdbtnEstagirio);
 		
 		btnCadastrar.addActionListener(new ActionListener() {
 			@Override
@@ -218,6 +192,7 @@ public class TelaCadastrarUsuario extends JFrame{
 					u.setTelefone(tfTelefone.getText());
 					u.setLogin(tfLogin.getText());
 					u.setSenha(senha);
+					u.setStatus(true);
 					if(rdbtnEstagirio.isSelected()) {
 						u.setTipo(0);
 					}
@@ -230,9 +205,7 @@ public class TelaCadastrarUsuario extends JFrame{
 					TelaUsuarioGerenciamento tug = new TelaUsuarioGerenciamento();
 					frame.dispose();
 				} else {
-					System.out.println(pfSenha);
-					System.out.println(pfSenhaConfirmar);
-					JOptionPane.showMessageDialog(null, "Senha errada", "Conflito de senha", 2);
+					JOptionPane.showMessageDialog(null, "Senha errada", "Senhas diferentes", 2);
 				}
 			}
 		});

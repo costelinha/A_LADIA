@@ -4,47 +4,33 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-
-import br.ufac.si.projeto.entidades.Amostra;
-import br.ufac.si.projeto.entidades.CitologiaOuvido;
-import br.ufac.si.projeto.entidades.CitologiaPele;
-import br.ufac.si.projeto.entidades.ParasitologiaOuvido;
-import br.ufac.si.projeto.entidades.ParasitologiaPele;
-import br.ufac.si.projeto.entidades.Tricograma;
-import br.ufac.si.projeto.gerentes.ExameGerente;
-
 import javax.swing.JCheckBox;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 public class TelaExameGerenciamento {
 
-	private JFrame frame;
-	private JTextField tfPositivoPP;
+	private JFrame frmLadiaExames;
+	private JTextField tfPP;
 	private JTextField tfPositivoPO;
-	private JTextField tfLevedurasCP;
-	private JTextField tfBacteriasCP;
-	private JTextField tfObsCP;
-	private JTextField tfLevedurasCO;
-	private JTextField tfBacteriasCO;
+	private JTextField tfLevCP;
+	private JTextField tfBacCP;
+	private JTextField tfLevCO;
+	private JTextField tfBacCO;
 	private JTextField tfObsCO;
-	private Amostra amostra;
+	private JTextField tfObsCP;
 
 	/**
 	 * Launch the application.
 	 */
-/*	public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					TelaExameGerenciamento window = new TelaExameGerenciamento();
-					window.frame.setVisible(true);
+					window.frmLadiaExames.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,8 +41,7 @@ public class TelaExameGerenciamento {
 	/**
 	 * Create the application.
 	 */
-	public TelaExameGerenciamento(Amostra amostra) {
-		this.amostra = amostra;
+	public TelaExameGerenciamento() {
 		initialize();
 	}
 
@@ -64,437 +49,238 @@ public class TelaExameGerenciamento {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 640, 553);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		frmLadiaExames = new JFrame();
+		frmLadiaExames.getContentPane().setEnabled(false);
+		frmLadiaExames.getContentPane().setForeground(Color.GRAY);
+		frmLadiaExames.setTitle("LADIA - Exames");
+		frmLadiaExames.setBounds(100, 100, 624, 528);
+		frmLadiaExames.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmLadiaExames.getContentPane().setLayout(null);
 		
 		JLabel lblParasitologiaDePele = new JLabel("Parasitologia de Pele");
-		lblParasitologiaDePele.setBounds(12, 26, 159, 15);
-		frame.getContentPane().add(lblParasitologiaDePele);
-		
-		JRadioButton rdbtnPositivoPP = new JRadioButton("Positivo:");
-		rdbtnPositivoPP.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(rdbtnPositivoPP.isSelected()) {
-					tfPositivoPP.setEnabled(true);
-				}
-			}
-		});
-		rdbtnPositivoPP.setBounds(283, 22, 96, 23);
-		frame.getContentPane().add(rdbtnPositivoPP);
+		lblParasitologiaDePele.setForeground(Color.GRAY);
+		lblParasitologiaDePele.setBounds(12, 12, 166, 15);
+		frmLadiaExames.getContentPane().add(lblParasitologiaDePele);
 		
 		JRadioButton rdbtnNegativoPP = new JRadioButton("Negativo");
-		rdbtnNegativoPP.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(rdbtnNegativoPP.isSelected()) {
-					tfPositivoPP.setEnabled(false);
-					tfPositivoPP.setText("");
-				}
-			}
-		});
-		rdbtnNegativoPP.setBounds(194, 22, 88, 23);
-		frame.getContentPane().add(rdbtnNegativoPP);
+		rdbtnNegativoPP.setEnabled(false);
+		rdbtnNegativoPP.setBounds(200, 8, 88, 23);
+		frmLadiaExames.getContentPane().add(rdbtnNegativoPP);
 		
-		ButtonGroup bgPP = new ButtonGroup();
-		bgPP.add(rdbtnPositivoPP);
-		bgPP.add(rdbtnNegativoPP);
+		JRadioButton rdbtnPositivoPP = new JRadioButton("Positivo:");
+		rdbtnPositivoPP.setEnabled(false);
+		rdbtnPositivoPP.setBounds(294, 8, 88, 23);
+		frmLadiaExames.getContentPane().add(rdbtnPositivoPP);
 		
-		tfPositivoPP = new JTextField();
-		tfPositivoPP.setBounds(387, 24, 114, 19);
-		tfPositivoPP.setEnabled(false);
-		frame.getContentPane().add(tfPositivoPP);
-		tfPositivoPP.setColumns(10);
+		tfPP = new JTextField();
+		tfPP.setEnabled(false);
+		tfPP.setBounds(390, 10, 114, 19);
+		frmLadiaExames.getContentPane().add(tfPP);
+		tfPP.setColumns(10);
 		
 		JLabel lblParasitologiaDeOuvido = new JLabel("Parasitologia de Ouvido");
-		lblParasitologiaDeOuvido.setBounds(12, 67, 181, 15);
-		frame.getContentPane().add(lblParasitologiaDeOuvido);
+		lblParasitologiaDeOuvido.setForeground(Color.GRAY);
+		lblParasitologiaDeOuvido.setBounds(12, 206, 188, 15);
+		frmLadiaExames.getContentPane().add(lblParasitologiaDeOuvido);
 		
-		JRadioButton rdbtnNegativoPO = new JRadioButton("Negativo");
-		rdbtnNegativoPO.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(rdbtnNegativoPO.isSelected()) {
-					tfPositivoPO.setEnabled(false);
-					tfPositivoPO.setText("");
-				}
-			}
-		});
-		rdbtnNegativoPO.setBounds(194, 63, 88, 23);
-		frame.getContentPane().add(rdbtnNegativoPO);
+		JRadioButton rdbNegativoPO = new JRadioButton("Negativo");
+		rdbNegativoPO.setEnabled(false);
+		rdbNegativoPO.setBounds(200, 202, 88, 23);
+		frmLadiaExames.getContentPane().add(rdbNegativoPO);
 		
-		JRadioButton rdbtnPositivoPO = new JRadioButton("Positivo:");
-		rdbtnPositivoPO.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(rdbtnPositivoPO.isSelected()) {
-					tfPositivoPO.setEnabled(true);
-				}
-			}
-		});
-		rdbtnPositivoPO.setBounds(290, 63, 92, 23);
-		frame.getContentPane().add(rdbtnPositivoPO);
-		
-		ButtonGroup bgPO = new ButtonGroup();
-		bgPO.add(rdbtnNegativoPO);
-		bgPO.add(rdbtnPositivoPO);
+		JRadioButton rdbPositivoPO = new JRadioButton("Positivo:");
+		rdbPositivoPO.setEnabled(false);
+		rdbPositivoPO.setBounds(294, 202, 88, 23);
+		frmLadiaExames.getContentPane().add(rdbPositivoPO);
 		
 		tfPositivoPO = new JTextField();
 		tfPositivoPO.setEnabled(false);
-		tfPositivoPO.setBounds(387, 65, 114, 19);
-		frame.getContentPane().add(tfPositivoPO);
 		tfPositivoPO.setColumns(10);
+		tfPositivoPO.setBounds(390, 204, 114, 19);
+		frmLadiaExames.getContentPane().add(tfPositivoPO);
 		
 		JLabel lblCitologiaDePele = new JLabel("Citologia de Pele");
-		lblCitologiaDePele.setBounds(12, 105, 120, 15);
-		frame.getContentPane().add(lblCitologiaDePele);
+		lblCitologiaDePele.setForeground(Color.GRAY);
+		lblCitologiaDePele.setBounds(12, 51, 138, 15);
+		frmLadiaExames.getContentPane().add(lblCitologiaDePele);
 		
 		JCheckBox chckbxCedCP = new JCheckBox("CED");
-		chckbxCedCP.setBounds(22, 128, 52, 23);
-		frame.getContentPane().add(chckbxCedCP);
+		chckbxCedCP.setEnabled(false);
+		chckbxCedCP.setBounds(12, 74, 52, 23);
+		frmLadiaExames.getContentPane().add(chckbxCedCP);
 		
 		JCheckBox chckbxCenCP = new JCheckBox("CEN");
-		chckbxCenCP.setBounds(181, 128, 52, 23);
-		frame.getContentPane().add(chckbxCenCP);
-		
-		JCheckBox chckbxMacrfagosCP = new JCheckBox("Macrófagos");
-		chckbxMacrfagosCP.setBounds(20, 155, 129, 23);
-		frame.getContentPane().add(chckbxMacrfagosCP);
-		
-		JCheckBox chckbxEosinfilosCP = new JCheckBox("Eosinófilos");
-		chckbxEosinfilosCP.setBounds(181, 155, 129, 23);
-		frame.getContentPane().add(chckbxEosinfilosCP);
-		
-		JCheckBox chckbxLevedurasCP = new JCheckBox("Leveduras:");
-		chckbxLevedurasCP.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbxLevedurasCP.isSelected()) {
-					tfLevedurasCP.setEnabled(true);
-				}
-				if(chckbxLevedurasCP.isSelected()==false) {
-					tfLevedurasCP.setEnabled(false);
-					tfLevedurasCP.setText("");
-				}
-			}
-		});
-		chckbxLevedurasCP.setBounds(22, 182, 104, 23);
-		frame.getContentPane().add(chckbxLevedurasCP);
-		
-		tfLevedurasCP = new JTextField();
-		tfLevedurasCP.setEnabled(false);
-		tfLevedurasCP.setBounds(134, 184, 148, 19);
-		frame.getContentPane().add(tfLevedurasCP);
-		tfLevedurasCP.setColumns(10);
+		chckbxCenCP.setEnabled(false);
+		chckbxCenCP.setBounds(124, 74, 52, 23);
+		frmLadiaExames.getContentPane().add(chckbxCenCP);
 		
 		JCheckBox chckbxNeutrfilosCP = new JCheckBox("Neutrófilos");
-		chckbxNeutrfilosCP.setBounds(313, 128, 129, 23);
-		frame.getContentPane().add(chckbxNeutrfilosCP);
+		chckbxNeutrfilosCP.setEnabled(false);
+		chckbxNeutrfilosCP.setBounds(232, 74, 104, 23);
+		frmLadiaExames.getContentPane().add(chckbxNeutrfilosCP);
+		
+		JCheckBox chckbxLinfcitosCP = new JCheckBox("Linfócitos");
+		chckbxLinfcitosCP.setEnabled(false);
+		chckbxLinfcitosCP.setBounds(340, 74, 94, 23);
+		frmLadiaExames.getContentPane().add(chckbxLinfcitosCP);
+		
+		JCheckBox chckbxMacrfagosCP = new JCheckBox("Macrófagos");
+		chckbxMacrfagosCP.setEnabled(false);
+		chckbxMacrfagosCP.setBounds(12, 101, 108, 23);
+		frmLadiaExames.getContentPane().add(chckbxMacrfagosCP);
+		
+		JCheckBox chckbxEosinfilosCP = new JCheckBox("Eosinófilos");
+		chckbxEosinfilosCP.setEnabled(false);
+		chckbxEosinfilosCP.setBounds(124, 101, 104, 23);
+		frmLadiaExames.getContentPane().add(chckbxEosinfilosCP);
 		
 		JCheckBox chckbxCNeoplsicasCP = new JCheckBox("C. Neoplásicas (encaminhar)");
-		chckbxCNeoplsicasCP.setForeground(Color.RED);
-		chckbxCNeoplsicasCP.setBounds(314, 155, 240, 23);
-		frame.getContentPane().add(chckbxCNeoplsicasCP);
+		chckbxCNeoplsicasCP.setEnabled(false);
+		chckbxCNeoplsicasCP.setBounds(232, 101, 232, 23);
+		frmLadiaExames.getContentPane().add(chckbxCNeoplsicasCP);
+		
+		JCheckBox chckbxLevedurasCP = new JCheckBox("Leveduras:");
+		chckbxLevedurasCP.setEnabled(false);
+		chckbxLevedurasCP.setBounds(12, 128, 104, 23);
+		frmLadiaExames.getContentPane().add(chckbxLevedurasCP);
+		
+		tfLevCP = new JTextField();
+		tfLevCP.setEnabled(false);
+		tfLevCP.setBounds(124, 132, 104, 19);
+		frmLadiaExames.getContentPane().add(tfLevCP);
+		tfLevCP.setColumns(10);
 		
 		JCheckBox chckbxBactriasCP = new JCheckBox("Bactérias:");
-		chckbxBactriasCP.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbxBactriasCP.isSelected()) {
-					tfBacteriasCP.setEnabled(true);
-				}
-				if(chckbxBactriasCP.isSelected()==false) {
-					tfBacteriasCP.setEnabled(false);
-					tfBacteriasCP.setText("");
-				}
-			}
-		});
-		chckbxBactriasCP.setBounds(313, 182, 104, 23);
-		frame.getContentPane().add(chckbxBactriasCP);
+		chckbxBactriasCP.setEnabled(false);
+		chckbxBactriasCP.setBounds(232, 128, 104, 23);
+		frmLadiaExames.getContentPane().add(chckbxBactriasCP);
 		
-		tfBacteriasCP = new JTextField();
-		tfBacteriasCP.setEnabled(false);
-		tfBacteriasCP.setBounds(420, 184, 134, 19);
-		frame.getContentPane().add(tfBacteriasCP);
-		tfBacteriasCP.setColumns(10);
-		
-		JLabel lblObsCP = new JLabel("Obs:");
-		lblObsCP.setBounds(12, 213, 70, 15);
-		frame.getContentPane().add(lblObsCP);
-		
-		tfObsCP = new JTextField();
-		tfObsCP.setBounds(57, 213, 148, 19);
-		frame.getContentPane().add(tfObsCP);
-		tfObsCP.setColumns(10);
+		tfBacCP = new JTextField();
+		tfBacCP.setEnabled(false);
+		tfBacCP.setBounds(340, 130, 114, 19);
+		frmLadiaExames.getContentPane().add(tfBacCP);
+		tfBacCP.setColumns(10);
 		
 		JLabel lblCitologiaDeOuvido = new JLabel("Citologia de Ouvido");
-		lblCitologiaDeOuvido.setBounds(22, 246, 149, 15);
-		frame.getContentPane().add(lblCitologiaDeOuvido);
+		lblCitologiaDeOuvido.setForeground(Color.GRAY);
+		lblCitologiaDeOuvido.setBounds(12, 255, 138, 15);
+		frmLadiaExames.getContentPane().add(lblCitologiaDeOuvido);
 		
-		JCheckBox chckbxCedCO = new JCheckBox("CED");
-		chckbxCedCO.setBounds(22, 260, 52, 23);
-		frame.getContentPane().add(chckbxCedCO);
+		JCheckBox chckCEDCO = new JCheckBox("CED");
+		chckCEDCO.setEnabled(false);
+		chckCEDCO.setBounds(12, 278, 52, 23);
+		frmLadiaExames.getContentPane().add(chckCEDCO);
 		
-		JCheckBox chckbxCenCO = new JCheckBox("CEN");
-		chckbxCenCO.setBounds(181, 260, 52, 23);
-		frame.getContentPane().add(chckbxCenCO);
+		JCheckBox chckMacroCO = new JCheckBox("Macrófagos");
+		chckMacroCO.setEnabled(false);
+		chckMacroCO.setBounds(12, 305, 108, 23);
+		frmLadiaExames.getContentPane().add(chckMacroCO);
 		
-		JCheckBox chckbxNeutrofilosCO = new JCheckBox("Neutrófilos");
-		chckbxNeutrofilosCO.setBounds(313, 260, 129, 23);
-		frame.getContentPane().add(chckbxNeutrofilosCO);
+		JCheckBox chckLevCO = new JCheckBox("Leveduras:");
+		chckLevCO.setEnabled(false);
+		chckLevCO.setBounds(12, 332, 104, 23);
+		frmLadiaExames.getContentPane().add(chckLevCO);
 		
-		JCheckBox chckbsMacrofagosCO = new JCheckBox("Macrófagos");
-		chckbsMacrofagosCO.setBounds(20, 287, 129, 23);
-		frame.getContentPane().add(chckbsMacrofagosCO);
+		tfLevCO = new JTextField();
+		tfLevCO.setEnabled(false);
+		tfLevCO.setColumns(10);
+		tfLevCO.setBounds(124, 336, 104, 19);
+		frmLadiaExames.getContentPane().add(tfLevCO);
 		
-		JCheckBox chckbsEosinofilosCO = new JCheckBox("Eosinófilos");
-		chckbsEosinofilosCO.setBounds(181, 287, 129, 23);
-		frame.getContentPane().add(chckbsEosinofilosCO);
+		JCheckBox chckEosiCO = new JCheckBox("Eosinófilos");
+		chckEosiCO.setEnabled(false);
+		chckEosiCO.setBounds(124, 305, 104, 23);
+		frmLadiaExames.getContentPane().add(chckEosiCO);
 		
-		JCheckBox chckbsCNeoplasicasCO = new JCheckBox("C. Neoplásicas (encaminhar)");
-		chckbsCNeoplasicasCO.setForeground(Color.RED);
-		chckbsCNeoplasicasCO.setBounds(314, 287, 240, 23);
-		frame.getContentPane().add(chckbsCNeoplasicasCO);
+		JCheckBox chckCENCO = new JCheckBox("CEN");
+		chckCENCO.setEnabled(false);
+		chckCENCO.setBounds(124, 278, 52, 23);
+		frmLadiaExames.getContentPane().add(chckCENCO);
 		
-		JCheckBox chckbsLevedurasCO = new JCheckBox("Leveduras:");
-		chckbsLevedurasCO.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbsLevedurasCO.isSelected()) {
-					tfLevedurasCO.setEnabled(true);
-				}
-				if(chckbsLevedurasCO.isSelected()==false) {
-					tfLevedurasCO.setEnabled(false);
-					tfLevedurasCO.setText("");
-				}
-			}
-		});
-		chckbsLevedurasCO.setBounds(22, 314, 104, 23);
-		frame.getContentPane().add(chckbsLevedurasCO);
+		JCheckBox chckNeutroCO = new JCheckBox("Neutrófilos");
+		chckNeutroCO.setEnabled(false);
+		chckNeutroCO.setBounds(232, 278, 104, 23);
+		frmLadiaExames.getContentPane().add(chckNeutroCO);
 		
-		tfLevedurasCO = new JTextField();
-		tfLevedurasCO.setEnabled(false);
-		tfLevedurasCO.setColumns(10);
-		tfLevedurasCO.setBounds(134, 316, 148, 19);
-		frame.getContentPane().add(tfLevedurasCO);
+		JCheckBox chckNeopCO = new JCheckBox("C. Neoplásicas (encaminhar)");
+		chckNeopCO.setEnabled(false);
+		chckNeopCO.setBounds(232, 305, 232, 23);
+		frmLadiaExames.getContentPane().add(chckNeopCO);
 		
-		JCheckBox chckbBacteriasCO = new JCheckBox("Bactérias:");
-		chckbBacteriasCO.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbBacteriasCO.isSelected()) {
-					tfBacteriasCO.setEnabled(true);
-				}
-				if(chckbBacteriasCO.isSelected()==false) {
-					tfBacteriasCO.setEnabled(false);
-					tfBacteriasCO.setText("");
-				}
-			}
-		});
-		chckbBacteriasCO.setBounds(313, 314, 104, 23);
-		frame.getContentPane().add(chckbBacteriasCO);
+		JCheckBox chckBacCO = new JCheckBox("Bactérias:");
+		chckBacCO.setEnabled(false);
+		chckBacCO.setBounds(232, 332, 104, 23);
+		frmLadiaExames.getContentPane().add(chckBacCO);
 		
-		tfBacteriasCO = new JTextField();
-		tfBacteriasCO.setEnabled(false);
-		tfBacteriasCO.setColumns(10);
-		tfBacteriasCO.setBounds(420, 316, 134, 19);
-		frame.getContentPane().add(tfBacteriasCO);
+		tfBacCO = new JTextField();
+		tfBacCO.setEnabled(false);
+		tfBacCO.setColumns(10);
+		tfBacCO.setBounds(340, 334, 114, 19);
+		frmLadiaExames.getContentPane().add(tfBacCO);
 		
-		JLabel lblObsCO = new JLabel("Obs:");
-		lblObsCO.setBounds(12, 345, 70, 15);
-		frame.getContentPane().add(lblObsCO);
-		
-		tfObsCO = new JTextField();
-		tfObsCO.setColumns(10);
-		tfObsCO.setBounds(57, 345, 148, 19);
-		frame.getContentPane().add(tfObsCO);
+		JCheckBox chckLinfCO = new JCheckBox("Linfócitos");
+		chckLinfCO.setEnabled(false);
+		chckLinfCO.setBounds(340, 278, 94, 23);
+		frmLadiaExames.getContentPane().add(chckLinfCO);
 		
 		JLabel lblTricograma = new JLabel("Tricograma");
-		lblTricograma.setBounds(12, 388, 120, 15);
-		frame.getContentPane().add(lblTricograma);
+		lblTricograma.setForeground(Color.GRAY);
+		lblTricograma.setBounds(12, 421, 94, 15);
+		frmLadiaExames.getContentPane().add(lblTricograma);
 		
-		JRadioButton rdbtnNegativoT = new JRadioButton("Negativo");
-		rdbtnNegativoT.setBounds(12, 411, 88, 23);
-		frame.getContentPane().add(rdbtnNegativoT);
+		JLabel lblObsCO = new JLabel("Obs:");
+		lblObsCO.setForeground(Color.GRAY);
+		lblObsCO.setBounds(12, 363, 70, 15);
+		frmLadiaExames.getContentPane().add(lblObsCO);
 		
-		JRadioButton rdbtnPositivoT = new JRadioButton("Positivo:");
-		rdbtnPositivoT.setBounds(112, 411, 86, 23);
-		frame.getContentPane().add(rdbtnPositivoT);
+		tfObsCO = new JTextField();
+		tfObsCO.setEnabled(false);
+		tfObsCO.setBounds(56, 361, 172, 19);
+		frmLadiaExames.getContentPane().add(tfObsCO);
+		tfObsCO.setColumns(10);
 		
-		ButtonGroup bgT = new ButtonGroup();
-		bgT.add(rdbtnNegativoT);
-		bgT.add(rdbtnPositivoT);
+		tfObsCP = new JTextField();
+		tfObsCP.setEnabled(false);
+		tfObsCP.setColumns(10);
+		tfObsCP.setBounds(56, 159, 172, 19);
+		frmLadiaExames.getContentPane().add(tfObsCP);
+		
+		JLabel lblObsCP = new JLabel("Obs:");
+		lblObsCP.setForeground(Color.GRAY);
+		lblObsCP.setBounds(12, 161, 70, 15);
+		frmLadiaExames.getContentPane().add(lblObsCP);
+		
+		JRadioButton rdbtnNegativoTri = new JRadioButton("Negativo");
+		rdbtnNegativoTri.setEnabled(false);
+		rdbtnNegativoTri.setBounds(107, 417, 88, 23);
+		frmLadiaExames.getContentPane().add(rdbtnNegativoTri);
+		
+		JRadioButton rdbtnPositivoTri = new JRadioButton("Positivo:");
+		rdbtnPositivoTri.setEnabled(false);
+		rdbtnPositivoTri.setBounds(200, 417, 88, 23);
+		frmLadiaExames.getContentPane().add(rdbtnPositivoTri);
 		
 		JCheckBox chckbxEndothrix = new JCheckBox("Endothrix");
 		chckbxEndothrix.setEnabled(false);
-		chckbxEndothrix.setBounds(205, 411, 96, 23);
-		frame.getContentPane().add(chckbxEndothrix);
+		chckbxEndothrix.setBounds(294, 417, 94, 23);
+		frmLadiaExames.getContentPane().add(chckbxEndothrix);
 		
 		JCheckBox chckbxEctothrix = new JCheckBox("Ectothrix");
 		chckbxEctothrix.setEnabled(false);
-		chckbxEctothrix.setBounds(305, 411, 88, 23);
-		frame.getContentPane().add(chckbxEctothrix);
-
-		rdbtnPositivoT.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(rdbtnPositivoT.isSelected()) {
-					chckbxEndothrix.setEnabled(true);
-					chckbxEctothrix.setEnabled(true);
-				}
-			}
-		});
-		rdbtnNegativoT.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(rdbtnNegativoT.isSelected()) {
-					chckbxEndothrix.setEnabled(false);
-					chckbxEctothrix.setEnabled(false);
-					chckbxEndothrix.setSelected(false);
-					chckbxEctothrix.setSelected(false);
-				}
-			}
-		});
-		
-		if(amostra.getExames()[0]==false) {
-			rdbtnNegativoPP.setEnabled(false);
-			rdbtnPositivoPP.setEnabled(false);
-		}
-		if(amostra.getExames()[1]==false) {
-			rdbtnNegativoPO.setEnabled(false);
-			rdbtnPositivoPO.setEnabled(false);
-		}
-		if(amostra.getExames()[2]==false) {
-			chckbxCedCP.setEnabled(false);
-			chckbxCenCP.setEnabled(false);
-			chckbxMacrfagosCP.setEnabled(false);
-			chckbxNeutrfilosCP.setEnabled(false);
-			chckbxBactriasCP.setEnabled(false);
-			chckbxCNeoplsicasCP.setEnabled(false);
-			chckbxEosinfilosCP.setEnabled(false);
-			chckbxLevedurasCP.setEnabled(false);
-			tfObsCP.setEnabled(false);
-		}
-		if(amostra.getExames()[3]==false) {
-			chckbxCedCO.setEnabled(false);
-			chckbxCenCO.setEnabled(false);
-			chckbsMacrofagosCO.setEnabled(false);
-			chckbxNeutrofilosCO.setEnabled(false);
-			chckbBacteriasCO.setEnabled(false);
-			chckbsCNeoplasicasCO.setEnabled(false);
-			chckbsEosinofilosCO.setEnabled(false);
-			chckbsLevedurasCO.setEnabled(false);
-			tfObsCO.setEnabled(false);
-		}
-		if(amostra.getExames()[4]==false) {
-			rdbtnNegativoT.setEnabled(false);
-			rdbtnPositivoT.setEnabled(false);
-		}
-		
-		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ExameGerente eg = new ExameGerente();
-				if(amostra.getExames()[0]==true) {
-					ParasitologiaPele pp = new ParasitologiaPele();
-					if(rdbtnPositivoPP.isSelected()) {
-						pp.setResultado(true);
-					}
-					pp.setAmostra(amostra);
-					eg.adicionar(pp);
-				}
-				if(amostra.getExames()[1]==true) {
-					ParasitologiaOuvido po = new ParasitologiaOuvido();
-					if(rdbtnPositivoPO.isSelected()) {
-						po.setResultado(true);
-					}
-					po.setAmostra(amostra);
-					eg.adicionar(po);
-				}
-				if(amostra.getExames()[2]==true) {
-					CitologiaPele cp = new CitologiaPele();
-					if(chckbxCedCP.isSelected()) {
-						cp.setCen(true);
-					}
-					if(chckbxCenCP.isSelected()) {
-						cp.setCed(true);
-					}
-					if(chckbxNeutrfilosCP.isSelected()) {
-						cp.setNeutrofilos(true);
-					}
-					if(chckbxMacrfagosCP.isSelected()) {
-						cp.setMacrofagos(true);
-					}
-					if(chckbxEosinfilosCP.isSelected()) {
-						cp.setEosinofilos(true);
-					}
-					if(chckbxCNeoplsicasCP.isSelected()) {
-						cp.setcNeoplasicas(true);
-					}
-					if(chckbxLevedurasCP.isSelected()) {
-						cp.setLeveduras(tfLevedurasCP.getText());
-					}
-					if(chckbxBactriasCP.isSelected()) {
-						cp.setBacterias(tfBacteriasCP.getText());
-					}
-					cp.setObservacao(tfObsCP.getText());
-					cp.setAmostra(amostra);
-					eg.adicionar(cp);
-				}
-				if(amostra.getExames()[3]==true) {
-					CitologiaOuvido co = new CitologiaOuvido();
-					if(chckbxCedCO.isSelected()) {
-						co.setCen(true);
-					}
-					if(chckbxCenCO.isSelected()) {
-						co.setCed(true);
-					}
-					if(chckbxNeutrofilosCO.isSelected()) {
-						co.setNeutrofilos(true);
-					}
-					if(chckbsMacrofagosCO.isSelected()) {
-						co.setMacrofagos(true);
-					}
-					if(chckbsEosinofilosCO.isSelected()) {
-						co.setEosinofilos(true);
-					}
-					if(chckbsCNeoplasicasCO.isSelected()) {
-						co.setcNeoplasicas(true);
-					}
-					if(chckbsLevedurasCO.isSelected()) {
-						co.setLeveduras(tfLevedurasCO.getText());
-					}
-					if(chckbBacteriasCO.isSelected()) {
-						co.setBacterias(tfBacteriasCO.getText());
-					}
-					co.setObservacao(tfObsCO.getText());
-					co.setAmostra(amostra);
-					eg.adicionar(co);
-				}
-				if(amostra.getExames()[4]==true) {
-					Tricograma t = new Tricograma();
-					if(rdbtnPositivoT.isSelected()) {
-						if(chckbxEndothrix.isSelected()) {
-							t.setResultado(chckbxEndothrix.getText());
-						} else {
-							t.setResultado(chckbxEctothrix.getText());
-						}
-					}
-					t.setAmostra(amostra);
-					eg.adicionar(t);
-				}
-				JOptionPane.showMessageDialog(null, "Exame(s) salvo(s)");
-				eg.encerrar();
-				TelaAmostraGerenciamento tag = new TelaAmostraGerenciamento();
-				frame.dispose();
-			}
-		});
-		btnSalvar.setBounds(375, 485, 117, 25);
-		frame.getContentPane().add(btnSalvar);
+		chckbxEctothrix.setBounds(390, 417, 88, 23);
+		frmLadiaExames.getContentPane().add(chckbxEctothrix);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaAmostraGerenciamento tag = new TelaAmostraGerenciamento();
-				frame.dispose();
-			}
-		});
-		btnCancelar.setBounds(511, 485, 117, 25);
-		frame.getContentPane().add(btnCancelar);
+		btnCancelar.setBounds(495, 460, 117, 25);
+		frmLadiaExames.getContentPane().add(btnCancelar);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setEnabled(false);
+		btnSalvar.setBounds(358, 460, 117, 25);
+		frmLadiaExames.getContentPane().add(btnSalvar);
+		
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.setBounds(219, 460, 117, 25);
+		frmLadiaExames.getContentPane().add(btnEditar);
 	}
 }

@@ -118,7 +118,7 @@ public class TelaExameVisualizacao {
 		if(amostra.getExames()[0]) {
 			ParasitologiaPeleGerente ppg = new ParasitologiaPeleGerente();
 			ParasitologiaPele pp = new ParasitologiaPele();
-			if(ppg.recuperar(pp.getId()).isResultado()) {
+		/*	if(ppg.recuperar(pp.getId()).isResultado()) {
 				lblPP = new JLabel("Positivo");
 			}else {
 				lblPP = new JLabel("Negativo");
@@ -179,7 +179,7 @@ public class TelaExameVisualizacao {
 		}else {
 			lblPP = new JLabel("Não solicitado");
 			lblPP.setBounds(157, 12, 70, 15);
-			frame.getContentPane().add(lblPP);
+			frame.getContentPane().add(lblPP);*/
 		}
 	}
 }

@@ -72,6 +72,7 @@ public class TelaEditarUsuario extends JFrame{
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
+		frame.setTitle("LADIA - Editar Usuário");
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(24, 66, 70, 15);
@@ -153,25 +154,31 @@ public class TelaEditarUsuario extends JFrame{
 			}
 		});
 		
-		JLabel lblAladia = new JLabel("A-LADIA");
-		lblAladia.setBounds(178, 24, 70, 15);
-		frame.getContentPane().add(lblAladia);
-		
 		JLabel lblPrivilgios = new JLabel("Privilégios");
-		lblPrivilgios.setBounds(333, 66, 103, 15);
+		lblPrivilgios.setBounds(333, 95, 103, 15);
 		frame.getContentPane().add(lblPrivilgios);
 		
 		JRadioButton rdbtnEstagirio = new JRadioButton("Estagiário");
-		rdbtnEstagirio.setBounds(301, 89, 149, 23);
+		rdbtnEstagirio.setBounds(301, 118, 149, 23);
 		frame.getContentPane().add(rdbtnEstagirio);
 		
 		JRadioButton rdbtnCoordenador = new JRadioButton("Coordenador");
-		rdbtnCoordenador.setBounds(301, 116, 149, 23);
+		rdbtnCoordenador.setBounds(301, 145, 149, 23);
 		frame.getContentPane().add(rdbtnCoordenador);
+		
+		if(usuario.getTipo()==1)
+			rdbtnCoordenador.setSelected(true);
+		else
+			rdbtnEstagirio.setSelected(true);
 		
 		ButtonGroup bgTipo = new ButtonGroup();
 		bgTipo.add(rdbtnCoordenador);
 		bgTipo.add(rdbtnEstagirio);
+		
+		JLabel label = new JLabel(TelaLogin.getUsuario().getLogin());
+		label.setFont(new Font("Purisa", Font.BOLD, 28));
+		label.setBounds(266, 0, 170, 50);
+		frame.getContentPane().add(label);
 		
 		btnConfirmar.addActionListener(new ActionListener() {
 			@Override
@@ -200,8 +207,6 @@ public class TelaEditarUsuario extends JFrame{
 					TelaUsuarioGerenciamento tug = new TelaUsuarioGerenciamento();
 					frame.dispose();
 				} else {
-					System.out.println(pfSenha);
-					System.out.println(pfSenhaConfirmar);
 					JOptionPane.showMessageDialog(null, "Senha errada", "Conflito de senha", 2);
 				}
 			}
